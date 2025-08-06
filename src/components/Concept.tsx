@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { IoChevronForwardSharp } from "react-icons/io5";
+import EmblaCarousel from './carouselConceptlMobile/Carousel';
 
  const concept = [
     {
@@ -50,25 +51,25 @@ import { IoChevronForwardSharp } from "react-icons/io5";
 const Concept = () => {
   return (
     <div>
-        <div className="relative w-[100vw] h-[20vh] bg-[#C5C1A5]">
-            <div className="relative w-[600px] h-[20vh]">
+        <div className="relative h-[15vh] md:h-[20vh] bg-[#C5C1A5]">
+            <div className="md:w-[600px] h-[20vh]">
                 <Image
             src="/background/bgleaf.jpg"
             alt="bfleaf"
             fill
-            className='object-cover top-0'
+            className='object-cover object-top'
             />
-            <div className="absolute top-1/6 left-1/4 w-full">
-                <p className="inline-block border-b-4 border-amber-600 font-bold text-2xl text-[#834520] py-2">
+            <div className="absolute md:top-1/6 md:left-12 left-1/12 top-1/8 inline-block ">
+                <p className="inline-block border-b-4 border-amber-600 font-bold text-xl md:text-2xl text-[#834520] py-2">
                     Concept
                 </p>
-                <p className="font-light text-3xl text-[#834520] py-2">
-                    Inspiration Behind the Grand Design 
+                <p className="font-extralight text-xl md:text-3xl text-[#834520] py-2 ">
+                    Inspiration Behind the Grand Design
                 </p>
             </div>
             </div>
             </div>
-        <div className="flex justify-center">
+        <div className="hidden md:flex justify-center">
             {
                 concept.map((item,index) => {
                     return(
@@ -104,6 +105,9 @@ const Concept = () => {
                     )
                 })
             }
+        </div>
+        <div className="md:hidden block">
+            <EmblaCarousel slides={concept}/>
         </div>
         
         </div>

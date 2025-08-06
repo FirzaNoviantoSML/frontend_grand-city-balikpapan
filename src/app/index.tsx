@@ -8,6 +8,9 @@ import BannerHome from '@/components/BannerHome'
 import ResidentialHome from '@/components/ResidentialHome'
 import CommercialHome from '@/components/CommercialHome'
 import FacilitiesHome from '@/components/FacilitiesHome'
+import News from '@/components/News'
+import LocationHome from '@/components/LocationHome'
+import FooterImageRibbon from '@/components/FooterImageRibbon'
 
 const HomeIndex = () => {
  
@@ -15,11 +18,13 @@ const HomeIndex = () => {
    const images = [
    {
     image:"/carousel/mainbanner-grandcity-2-gerbangutama.jpg",
+    imageMobile:"/carousel/mainbanner-grandcity-2-gerbangutama-mobile.jpg",
     title: "Grand City Main Gate",
     slug:"/residential"
    },
    {
     image:"/carousel/mainbanner-grandcity.jpg",
+    imageMobile:"/carousel/mainbanner-grandcity-mobile.jpg",
     title: "Comprehensive Masterplan",
     slug:"/about-us"
    }
@@ -34,6 +39,9 @@ const HomeIndex = () => {
         <ResidentialHome/>
         <CommercialHome/>
         <FacilitiesHome/>
+        <News/>
+        <LocationHome/>
+        <FooterImageRibbon/>
 
     </div>
   )

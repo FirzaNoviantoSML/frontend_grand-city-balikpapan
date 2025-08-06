@@ -48,11 +48,11 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
     return (
         <section className="relative">
             <div ref={emblaRef} className="embla overflow-hidden ">
-                <div className="embla__container flex touch-pan-y gap-12 px-12 py-8">
+                <div className="embla__container flex touch-pan-y gap-2 md:gap-12  px-12 mb-6">
                     {slides.map((item, idx) => (
                         <div
                             key={idx}
-                            className="relative embla__slide flex-[0_0_calc(32%-1rem)] h-[60vh] rounded-xl shadow-md bg-white"
+                            className="relative embla__slide flex-[0_0_calc(100%)] md:flex-[0_0_calc(32%-1rem)] h-[60vh] rounded-xl shadow-md bg-white"
                         >
                             <div className="relative w-full h-[50%]">
                                 <Image

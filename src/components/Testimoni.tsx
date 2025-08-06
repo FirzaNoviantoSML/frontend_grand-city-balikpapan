@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { BsQuote } from 'react-icons/bs'
+import EmblaCarousel from './carouselTestimonialMobile/Carousel'
 
 const Testimoni = () => {
 
@@ -26,11 +27,11 @@ const Testimoni = () => {
     <div  className="flex justify-center">
        <div>
          <div className="text-center">
-                <p className="text-amber-800 text-2xl font-bold inline-block border-b-4 border-orange-700 pb-1 mb-8">
+                <p className="text-amber-800 text-md md:text-2xl font-bold inline-block border-b-4 border-orange-700 pb-1 mb-8">
                 Testimonial
                 </p>
         </div>
-        <div className="grid grid-cols-3">
+        <div className="hidden md:grid md:grid-cols-3">
             {
                 testimonial.map((item,index) => {
                     return (
@@ -59,6 +60,9 @@ const Testimoni = () => {
                 })
             }
         </div>
+        <div className="md:hidden block">
+                <EmblaCarousel slides={testimonial}/>
+            </div>
        </div>
     </div>
   )

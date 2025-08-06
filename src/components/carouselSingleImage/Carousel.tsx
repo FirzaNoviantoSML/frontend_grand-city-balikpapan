@@ -48,19 +48,18 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
     return (
         <section className="relative">
             <div ref={emblaRef} className="embla overflow-hidden ">
-                <div className="embla__container flex touch-pan-y gap-12 px-12 py-8">
+                <div className="embla__container flex touch-pan-y gap-3 md:gap-8 px-12 mb-6">
                     {slides.map((item, idx) => (
                         <div
                             key={idx}
-                            className="embla__slide flex-[0_0_calc(90%)] h-[50vh] rounded-xl shadow-md bg-white flex justify-start"
-                        >
-                            
-                            <div className="relative w-3/5 h-[100%] z-10">
+                            className="embla__slide flex-[0_0_calc(90%)] h-[55vh] md:h-[50vh] rounded-xl shadow-md bg-white md:flex justify-start"
+                        > 
+                            <div className="hidden md:block relative w-3/5 h-[100%] z-10">
                                 <Image
                             src={item.thumb}
                             alt={item.slug}
                             fill
-                            className="absolute object-cover object-bottom"/>
+                            className="absolute object-cover object-bottom rounded"/>
                                 <Image
                             src="/background/framerounded.png"
                             alt="framerounded"
@@ -69,7 +68,7 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                             className="absolute h-[100%] right-0 bottom-0  z-20 object-center"
                             />
                             </div>
-                            <div className=" pl-6 pr-2 w-[40%] flex justify-between flex-col h-[100%] pb-6">
+                            <div className="hidden pl-6 pr-2 w-[40%] md:flex justify-between flex-col h-[100%] pb-6">
                                 <div className="mt-6 ">
                                     <Image
                                 src={item.logo}
@@ -85,16 +84,35 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                                 <div className="font-bold flex justify-start items-center text-amber-900">
                                 See Details
                                 <IoChevronForwardSharp className='font-bold' />
-                                </div>
-
-                                
-                            
+                                </div>                         
                             </div>
-
-                            
-                            
-                            
-
+                            <div className="block md:hidden relative w-full h-[40%]">
+                                 <Image
+                                src={item.thumb}
+                                alt="image"
+                                fill
+                                className="object-cover object-center rounded-t-xl"
+                            />
+                            </div>
+                             <div className="md:hidden flex justify-between flex-col h-[55%]">
+                                <div className="px-4">
+                                    <div className="flex justify-center mt-2">
+                                        <Image
+                                        alt={item.slug}
+                                        src={item.logo}
+                                        width={200}
+                                        height={200}
+                                        />
+                                    </div>
+                                <div className="py-2 text-sm">
+                                    {item.desc}
+                                </div>
+                                </div>
+                                <div className="font-bold flex justify-start items-center text-amber-900 ml-4">
+                                    See Details
+                                    <IoChevronForwardSharp className='font-bold' />
+                                </div>
+                                </div>
                         </div>
                     ))}
                 </div>
