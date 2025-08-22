@@ -58,12 +58,12 @@ export const PrevButton: React.FC<PropType> = (props) => {
 
     return (
         <button
-            className="embla__button embla__button--prev w-9 h-9 inline-flex items-center justify-center bg-transparent rounded-full shadow-[inset_0_0_0_2px] text-white disabled:text-gray-400"
+            className="embla__button embla__button--next w-12 h-32 inline-flex items-center justify-center  rounded-l-md  text-white disabled:text-gray-400  bg-[rgba(89,89,90,0.5)]"
             type="button"
             {...restProps}
         >
             <svg
-                className="embla__button__svg w-3 h-3"
+                className="embla__button__svg w-8 h-8"
                 viewBox="0 0 532 532"
                 fill="white"
             >
@@ -81,12 +81,12 @@ export const NextButton: React.FC<PropType> = (props) => {
 
     return (
         <button
-            className="embla__button embla__button--next w-9 h-9 inline-flex items-center justify-center bg-transparent rounded-full shadow-[inset_0_0_0_2px] text-white disabled:text-gray-400"
+            className="embla__button embla__button--next w-12 h-32 inline-flex items-center justify-center  rounded-l-md  text-white disabled:text-gray-400  bg-[rgba(89,89,90,0.5)]"
             type="button"
             {...restProps}
         >
             <svg
-                className="embla__button__svg w-3 h-3"
+                className="embla__button__svg w-8 h-8"
                 viewBox="0 0 532 532"
                 fill="white"
             >

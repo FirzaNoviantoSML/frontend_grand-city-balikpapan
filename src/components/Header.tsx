@@ -111,9 +111,11 @@ const Header = () => {
 
 
   return (
+    <div>
+
     <header
       className={clsx(
-        "fixed top-0 z-50 max-h-svh w-full transition-all duration-300  shadow-md p-0"
+        "md:fixed top-0 z-50 max-h-svh w-full transition-all duration-300  shadow-md p-0"
       )}
     >
       <div className="xl:flex items-center justify-between md:px-20 hidden bg-amber-50 py-2">
@@ -224,6 +226,25 @@ const Header = () => {
         </div>
       </div>
     </header>
+    <header className={clsx(
+        "fixed md:hidden top-0 z-50 max-h-svh w-full transition-all duration-300  shadow-md p-0"
+      )}>
+        <div className="flex px-6 bg-amber-50 py-2 justify-end-safe gap-32">
+        <Link href="/" className="flex gap-x-2 items-center">
+          <Image
+            width={140}
+            height={120}
+            src="/logo-grandcitybalikpapan.png"
+            alt="logo Kota Wisata"
+            priority
+          />
+        </Link>
+        <div>
+         =
+        </div>
+        </div>
+    </header>
+    </div>
   );
 };
 

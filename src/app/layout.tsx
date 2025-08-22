@@ -1,15 +1,14 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import {Ubuntu} from "next/font/google"
 import Header from "@/components/Header";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+
+const ubuntu  = Ubuntu({
+  subsets: ["latin"],     // wajib, pilih subset
+  weight: ["300", "400", "500","700"], // opsional, pilih bobot font
+  variable: "--font-ubuntu", // opsional, pakai CSS variable
 });
 
 export const metadata: Metadata = {
@@ -24,8 +23,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${ubuntu.className} antialiased`}
       >
         <Header/>
         {children}
