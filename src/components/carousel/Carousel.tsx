@@ -4,15 +4,11 @@ import { EmblaOptionsType } from 'embla-carousel'
 import { PrevButton, NextButton, usePrevNextButtons } from './carouselArrow'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
+import {CarouselBanner} from "@/types/homepageTypes"
 
-type ContentType = {
-    title:string,
-    image:string,
-    slug:string,
-    imageMobile:string
-}
+
 type PropType = {
-    slides: ContentType[]
+    slides: CarouselBanner[]
     options?: EmblaOptionsType
 }
 
@@ -50,8 +46,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                         >
                             <div>
                                 <Image
-                                src={isMobile?item.imageMobile:item.image}
-                                alt="image"
+                                src={isMobile?`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.hero_banner_portrait.url}`:`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.hero_banner_landscape.url}`}
+                                alt={isMobile?item.hero_banner_portrait.name:item.hero_banner_landscape.name}
                                 fill
                                 className="object-cover brightness-50"
                             />

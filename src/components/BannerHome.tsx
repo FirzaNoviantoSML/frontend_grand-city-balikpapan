@@ -1,12 +1,15 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-
-const BannerHome = () => {
+type PropType = {
+    hero_banner: string | undefined
+}
+const BannerHome:React.FC<PropType> = (props) => {
+  const {hero_banner} = props
   return (
     <div className="relative w-full h-48">
         <Image
-        src={"/background/mainbanner-grandcity-3-zoning.jpg"}
+        src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${hero_banner}`}
         alt="banner"
         fill
         className="object-cover brightness-50"

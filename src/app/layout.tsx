@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import {Ubuntu} from "next/font/google"
 import Header from "@/components/Header";
+import {LanguageProvider} from "@/contex/LanguageContext"
 
 
 const ubuntu  = Ubuntu({
@@ -33,8 +34,10 @@ export default function RootLayout({
       <body
         className={`${ubuntu.className} antialiased`}
       >
-        <Header/>
-        {children}
+        <LanguageProvider>
+          <Header/>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

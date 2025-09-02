@@ -1,5 +1,5 @@
 "use client"
-
+import { useLanguage } from '@/contex/LanguageContext'
 import React from 'react'
 import EmblaCarousel from '@/components/carousel/Carousel'
 import VideoTestimoni from '@/components/VideoTestimoni'
@@ -11,31 +11,28 @@ import FacilitiesHome from '@/components/FacilitiesHome'
 import News from '@/components/News'
 import LocationHome from '@/components/LocationHome'
 import FooterImageRibbon from '@/components/FooterImageRibbon'
+import { useGetHomePage } from '@/hooks/homepage/useHomepage'
 
 const HomeIndex = () => {
- 
+
+  const {language} = useLanguage()
+    const { homePage,isLoading } = useGetHomePage("en");
     
-   const images = [
-   {
-    image:"/carousel/mainbanner-grandcity-2-gerbangutama.jpg",
-    imageMobile:"/carousel/mainbanner-grandcity-2-gerbangutama-mobile.jpg",
-    title: "Grand City Main Gate",
-    slug:"/residential"
-   },
-   {
-    image:"/carousel/mainbanner-grandcity.jpg",
-    imageMobile:"/carousel/mainbanner-grandcity-mobile.jpg",
-    title: "Comprehensive Masterplan",
-    slug:"/about-us"
+
+   if(isLoading){
+    return(
+      <div>
+        Loading
+      </div>
+    )
    }
-   ]
 
   return (
     <div>
-        <EmblaCarousel slides={images}/>
-        <VideoTestimoni/>
+        <EmblaCarousel slides={homePage!.carousel_banner}/>
+        <VideoTestimoni homePageData={homePage!}/>
         <Concept/>
-        <BannerHome/>
+        <BannerHome hero_banner={homePage?.zone_image.url}/>
         <ResidentialHome/>
         <CommercialHome/>
         <FacilitiesHome/>

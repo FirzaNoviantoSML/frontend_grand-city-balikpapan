@@ -6,15 +6,11 @@ import {DotButton} from './CarouselDotButton'
 import Image from 'next/image'
 import {useState,useEffect} from 'react'
 import { IoChevronForwardSharp } from "react-icons/io5";
+import {Development} from "@/types/developmentListTypes"
 
-type ContentType = {
-    thumb:string,
-    logo:string,
-    desc:string
-    slug:string,
-}
+
 type PropType = {
-    slides: ContentType[]
+    slides: Development[]
     options?: EmblaOptionsType
 }
 
@@ -56,8 +52,8 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                         >
                             <div className="relative w-full h-[50%]">
                                 <Image
-                                src={item.thumb}
-                                alt="image"
+                                src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.thumbnail_image.url}`}
+                                alt={item.thumbnail_image.name}
                                 fill
                                 className="object-cover object-center rounded-t-xl"
                             />
@@ -66,14 +62,14 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                             <div className="px-4">
                                 <div className="flex justify-center mt-2">
                                     <Image
-                                    alt={item.slug}
-                                    src={item.logo}
+                                    alt={item.logo.name}
+                                    src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.logo.url}`}
                                     width={200}
                                     height={200}
                                     />
                                 </div>
-                            <div className="py-3">
-                                {item.desc}
+                            <div className="py-3 text-gray-900">
+                                {item.thumbnail_description}
                             </div>
                             </div>
                             <div className="font-bold flex justify-start items-center text-amber-900 ml-4">

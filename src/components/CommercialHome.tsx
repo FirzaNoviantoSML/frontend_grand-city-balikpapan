@@ -1,8 +1,23 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import CarouselCommercial from './CarouselCommercial'
+import {useGetDevelopmentThumbnailList} from "@/hooks/development/useRoutes"
+import {useLanguage} from "@/contex/LanguageContext"
 
 const CommercialHome = () => {
+
+const {language} = useLanguage()
+const {developmentData,isLoading} = useGetDevelopmentThumbnailList(language,"Commercial")
+
+if(isLoading){
+    return(
+        <div>
+            
+        </div>
+    )
+}
+
   return (
     <div>
         <div className="relative bg-[#C4C1A4]">
@@ -25,7 +40,7 @@ const CommercialHome = () => {
                 </div>
             </div>
             </div>
-            <CarouselCommercial/>
+            <CarouselCommercial slides={developmentData!}/>
         </div>
     </div>
   )

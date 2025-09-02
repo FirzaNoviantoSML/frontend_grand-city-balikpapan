@@ -4,14 +4,11 @@ import { PrevButton, NextButton, usePrevNextButtons } from './carouselArrow'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
 import { BsQuote } from 'react-icons/bs'
+import {Testimonial} from '@/types/TestimonialTypes'
 
-type ContentType = {
-    name:string,
-    image:string,
-    testimoni:string,
-}
+
 type PropType = {
-    slides: ContentType[]
+    slides: Testimonial[]
     options?: EmblaOptionsType
 }
 
@@ -39,16 +36,16 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                             key={index}
                             className="relative w-full overflow-hidden items-center flex justify-center  group  h-[25vh] flex-0 shrink-0 grow-0 basis-full"
                             >
-                            <div className="px-6">
+                            <div className="px-6 w-[80vw]">
                                 <div className="flex items-start mb-2">
                                 <BsQuote className="text-neutral-400 text-2xl" />
-                                <p className="text-neutral-700 italic mb-4">{item.testimoni}</p>
+                                <p className="text-neutral-700 italic mb-4">{item.quote}</p>
                                 </div>
                                 <div className="grid grid-cols-4 items-center">
-                                     <div className="relative w-32 h-32 ">
+                                     <div className="relative w-24 h-24 ">
                                     <Image
-                                    src={item.image}
-                                    alt={item.name}
+                                src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.profile_picture!.url}`}
+                                alt={item.profile_picture!.name}
                                     fill
                                     className="object-cover rounded-full"
                                     />

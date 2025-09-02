@@ -3,8 +3,14 @@ import React from 'react'
 import Image from 'next/image'
 import Video from './Video'
 import Testimoni from './Testimoni'
+import {HomePageData} from "@/types/homepageTypes"
 
-const VideoTestimoni = () => {
+type PropType = {
+    homePageData: HomePageData
+}
+
+const VideoTestimoni:React.FC<PropType> = (props) => {
+      const { homePageData } = props
   return (
     <div className="relative bg-amber-50 pb-12">
             <div className='absolute top-0 left-0' >
@@ -23,7 +29,13 @@ const VideoTestimoni = () => {
             height={600}
             />
         </div>
-    <Video/>
+    <Video 
+    title={homePageData.title} 
+    description={homePageData.description} 
+    thumbnail_video={homePageData.thumbnail_video.url} 
+    thumbnail_video_name={homePageData.thumbnail_video.name}
+    url_video={homePageData.link_video}
+    />
     <Testimoni/>
     <div>
 

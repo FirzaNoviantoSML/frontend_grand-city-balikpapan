@@ -4,51 +4,23 @@ import React from 'react'
 import Image from 'next/image'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import EmblaCarousel from './carouselConceptlMobile/Carousel';
+import {useLanguage} from "@/contex/LanguageContext"
+import {useGetConceptList} from "@/hooks/conceptList/useRoutes"
+ 
 
- const concept = [
-    {
-        image:"/concept/icon-zone-wood.png",
-        desc:"The Wood Element, which is closely related to the color green, is a symbol of renewal, a vision for the future, and symbolizes emotions and a confident personality. The energy from wood creates the dynamism to grow and face challenges, but always returns to its home and origin.",
-        label:"Wood Zone",
-        color:"#386641",
-        slug:"/wood-zone"
-
-    },
-    {
-        image:"/concept/icon-zone-water.png",
-        desc:"Water is an element that is always moving, dynamic and always looking for a way. The Water Element cannot be separated from its adaptable nature and is identical to the blue color, with the characteristics of courage, perseverance and determination.",
-        label:"Water zone",
-        color:"#006799",
-        slug:"/water-zone"
-
-    },
-    {
-        image:"/concept/icon-zone-earth.png",
-        desc:"The earth element, which is often close to a yellowish color, is a symbol of balance and transition, and is closely related to nurture and affection. The soil provides a place to grow, is a balance and a foothold for every being.",
-        label:"Earth Zone",
-        color:"#8D3802",
-        slug:"/earth-zone"
-
-    },
-    {
-        image:"/concept/icon-zone-fire.png",
-        desc:"Fire is a warmth-giving element and is often associated with maturity, sensitivity and growth. The element of fire is often symbolized by a reddish color and represents joy, human connection and sunshine.",
-        label:"Fire Zone",
-        color:"#F26522",
-        slug:"/fire-zone"
-
-    },
-    {
-        image:"/concept/icon-zone-metal.png",
-        desc:"Metal that is strong is a symbol of inspiration and resilience, and is often symbolized by the color white.",
-        label:"Metal Zone",
-        color:"#6D6E71",
-        slug:"/metal-zone"
-
-    },
-  ]
 
 const Concept = () => {
+    const {language} = useLanguage()
+    const {conceptData,isLoading} = useGetConceptList(language)
+
+    if(isLoading){
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
   return (
     <div>
         <div className="relative h-[15vh] md:h-[20vh] bg-[#C5C1A5]">
@@ -71,7 +43,7 @@ const Concept = () => {
             </div>
         <div className="hidden md:flex justify-center">
             {
-                concept.map((item,index) => {
+                conceptData!.map((item,index) => {
                     return(
                         <div className="relative w-full bg-[#FFFCDF]"
                         key={index}>
@@ -79,8 +51,8 @@ const Concept = () => {
                         <div className="relative z-10 p-4">
                         <div className="flex justify-center">
                             <Image
-                        src={item.image}
-                        alt={item.label}
+                        src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.icon.url}`}
+                        alt={item.icon.name}
                         width={80}
                         height={80}
                         />
@@ -88,11 +60,11 @@ const Concept = () => {
                         <p 
                         className={`text-center font-bold mt-2`}
                         style={{ color: item.color }}
-                        >{item.label}</p>
+                        >{item.title}</p>
                         <div
                         style={{ color: item.color }}
                         className="text-sm mt-4 mb-12">
-                            {item.desc}
+                            {item.description}
                         </div>
 
                         </div>
@@ -107,7 +79,7 @@ const Concept = () => {
             }
         </div>
         <div className="md:hidden block">
-            <EmblaCarousel slides={concept}/>
+            <EmblaCarousel slides={conceptData!}/>
         </div>
         
         </div>

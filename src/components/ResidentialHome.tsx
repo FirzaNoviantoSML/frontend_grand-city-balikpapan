@@ -1,9 +1,25 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import CarouselResidentials from './CarouselResidentials'
+import {useGetDevelopmentThumbnailList} from "@/hooks/development/useRoutes"
+import {useLanguage} from "@/contex/LanguageContext"
 
 
 const ResidentialHome = () => {
+
+  const {language} = useLanguage()
+  const {developmentData,isLoading} = useGetDevelopmentThumbnailList(language,"Residential")
+
+
+  if(isLoading){
+    return (
+      <div>
+
+      </div>
+    )
+  }
+
   return (
     <div className="relative bg-[#FEFCE5] py-12 ">
         <div className="absolute right-0 top-0 ">
@@ -26,7 +42,7 @@ const ResidentialHome = () => {
             </div>
           </div>
         </div>
-        <CarouselResidentials/>
+        <CarouselResidentials slides={developmentData!}/>
     </div>
   )
 }

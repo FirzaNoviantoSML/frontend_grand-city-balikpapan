@@ -1,24 +1,36 @@
+"use client"
+
 import React from 'react'
 import Image from 'next/image'
 
-const Video = () => {
+type PropType = {
+    title:string,
+    description:string,
+    thumbnail_video:string,
+    thumbnail_video_name:string,
+    url_video:string
+
+}
+
+const Video:React.FC<PropType> = (props)=> {
+  const {title,thumbnail_video,description,url_video,thumbnail_video_name} = props
   return (
     <div>
             <div className="relative z-20  py-16 font-serif px-6 md:px-0">
         <div className="relative md:flex md:justify-center md:gap-24">
-            <div className="text-3xl  md:w-[16%] font-extralight w-[65%] mb-4 md:mb-0">
-                Experience nature in vibrant city
+            <div className="text-3xl  md:w-[16%] font-extralight w-[65%] mb-4 md:mb-0 text-gray-800">
+                {title}
             </div>
-            <div className="md:w-[48%] text-lg font-extralight">
-                Balikpapan, a city full of life dynamics, is now more complete with the presence of Grand City, an international standard residential and commercial area, offered by Sinarmas land, one of the leading and trusted developers in Indonesia…. Experience nature in vibrant city.
+            <div className="md:w-[48%] text-lg font-extralight text-gray-800">
+                {description}
             </div>
         </div>
         <div className="flex justify-center mt-12">
         <div className="relative w-[100%] md:w-[70%] h-[25vh] md:h-[50vh]">
             <Image
             className="rounded-2xl object-cover shadow-2xl"
-            src={"/background/thumb-videoprofile.jpg"}
-            alt="background"
+            src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${thumbnail_video}`}
+            alt={thumbnail_video_name}
             fill
             />
               <button

@@ -4,16 +4,11 @@ import { PrevButton, NextButton, usePrevNextButtons } from './carouselArrow'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
 import { IoChevronForwardSharp } from "react-icons/io5";
+import {Concept} from "@/types/conceptListTypes"
 
-type ContentType = {
-        image:string,
-        desc:string,
-        label:string,
-        color:string,
-        slug:string
-}
+
 type PropType = {
-    slides: ContentType[]
+    slides: Concept[]
     options?: EmblaOptionsType
 }
 
@@ -47,8 +42,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                         <div className="relative z-10 p-4">
                         <div className="flex justify-center">
                             <Image
-                        src={item.image}
-                        alt={item.label}
+                        src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.icon.url}`}
+                        alt={item.icon.name}
                         width={80}
                         height={80}
                         />
@@ -56,11 +51,11 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                         <p 
                         className={`text-center font-bold mt-2`}
                         style={{ color: item.color }}
-                        >{item.label}</p>
+                        >{item.title}</p>
                         <div
                         style={{ color: item.color }}
                         className="text-sm mt-4 mb-12">
-                            {item.desc}
+                            {item.description}
                         </div>
 
                         </div>
