@@ -14,9 +14,10 @@ export const getConceptThumbnailList = async (lang: "en" | "id") => {
         fields: ["url", "name"],
         },
     },
-    });
-    const response = await axiosInstance.get(`/concepts?${query}`);
-    console.log("respon concept",response.data.data)
+    },
+    );
+    const response = await axiosInstance.get(`concepts?${query}`);
+    console.log("respon concept",response)
     return response.data.data;
   } catch (error) {
     console.log("Error fetching homepage data:", error);

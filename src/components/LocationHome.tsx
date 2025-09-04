@@ -1,13 +1,21 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import Dropdown from './Dropdown'
+import {Footer} from "@/types/footerTypes"
 
-const LocationHome = () => {
-const location = {
-    address:"Marketing Gallery Grand City Balikpapan Jl. Sinar Mas Land Boulevard - Grand City Kota Balikpapan - Kalimantan Timur 76129",
-    maps:"https://www.google.com/maps/embed/v1/place?q=marketing+grand+city+balikpapan&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8",
-    phone:"0542 8810 999"
+type PropType = {
+    footer: Footer
 }
+
+
+
+
+
+
+const LocationHome: React.FC<PropType> = (props) => {
+    const { footer } = props
+
 
   return (
     <div>
@@ -27,7 +35,7 @@ const location = {
                         Our Location
                     </p>
                     <p className="text-sm md:text-md">
-                        {location.address}
+                        {footer.address}
                     </p>
                     </div>
                 </div>
@@ -35,7 +43,7 @@ const location = {
         </div>
         <div>
             <iframe 
-            src={location.maps} className="w-full h-[600px]">                
+            src={footer.link_map} className="w-full h-[600px]">                
             </iframe>
         </div>
         <div className="bg-red-600 flex justify-center flex-col md:flex-row md:gap-48 py-8 gap-6">
@@ -44,7 +52,7 @@ const location = {
                     For Inquiry Call
                 </p>
                 <p className='text-white text-2xl md:text-3xl text-center'>
-                    {location.phone}
+                    {footer.phone_number}
                 </p>
             </div>
             <div className="flex justify-center flex-col">
@@ -52,7 +60,7 @@ const location = {
                     You Are Here
                 </p>
                 <div className="text-center">
-                    <Dropdown/>
+                    <Dropdown project={footer.project}/>
                 </div>
             </div>
 

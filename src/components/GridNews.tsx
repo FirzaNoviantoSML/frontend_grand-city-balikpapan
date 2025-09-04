@@ -1,39 +1,16 @@
 import Image from 'next/image'
 import React from 'react'
 import { IoChevronForwardSharp } from "react-icons/io5";
+import {NewsItem} from "@/types/news-promoListTypes"
 
-const GridNews = () => {
+type PropType = {
+    news: NewsItem[]
+}
 
-    const news:NewsItemType[] = [
-        {
-            image:"/news/News-Hayfield.jpg",
-            title:"WFH, Solution To Have A Dream House in Grand City Balikpapan",
-            date: "2021-3-29"
-        },
-        {
-            image:"/news/news-sinarmas.jpg",
-            title:"Sinar Mas Wisesa Moves Offices to Grand City",
-            date: "2020-11-19"
-        },
-        {
-            image:"/news/News-Hayfield.jpg",
-            title:"WFH, Solution To Have A Dream House in Grand City Balikpapan",
-            date: "2021-3-29"
-        },
-        {
-            image:"/news/news-sinarmas.jpg",
-            title:"Sinar Mas Wisesa Moves Offices to Grand City",
-            date: "2020-11-19"
-        }
-    ]
+const GridNews: React.FC<PropType> = (props) => {
 
-    type NewsItemType = {
-  image: string;
-  title: string;
-  date: string;
-};
-
-  return (
+    const { news } = props
+    return (
     <div>
                 <div className="flex justify-end px-12">
                 <div>
@@ -52,8 +29,8 @@ const GridNews = () => {
                 className="relative h-[58vh]"
                 >
                     <Image
-                    src={item.image}
-                    alt={item.title}
+                    src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.thumbnail.url}`}
+                    alt={item.thumbnail.name}
                     width={400}
                     height={400}
                     className="rounded-2xl shadow-md"

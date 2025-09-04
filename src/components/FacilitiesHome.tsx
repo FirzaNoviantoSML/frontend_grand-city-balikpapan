@@ -1,9 +1,27 @@
+"use client"
+
 import React from 'react'
 import GridFacilites from './GridFacilites'
 import CarouselFacilities from './CarouselFacilities'
+import {useGetFacilites} from '@/hooks/facilityList/useRoutes'
+import {useLanguage} from '@/contex/LanguageContext'
 
 
 const FacilitiesHome = () => {
+  const {language} = useLanguage()
+  const {facilitesData,isLoading} = useGetFacilites(language)
+  console.log("page facility",facilitesData)
+
+  if(isLoading){
+    return(
+      <div>
+
+      </div>
+    )
+  }
+
+
+
   return (
     <div>
          <div className="relative bg-amber-50 py-8">
@@ -20,10 +38,10 @@ const FacilitiesHome = () => {
         </div>
         </div>
         <div className="hidden md:flex justify-center">
-        <GridFacilites/>
+        <GridFacilites facilites={facilitesData!}/>
         </div>
         <div className="md:hidden">
-        <CarouselFacilities/>
+        <CarouselFacilities facilities={facilitesData!}/>
         </div>
         </div>
     </div>

@@ -1,41 +1,18 @@
+"use client"
 import Image from 'next/image'
 import React from 'react'
+import {Facilities} from '@/types/facilitiesListTypes'
 
-const GridFacilites = () => {
+type PropType = {
+    facilites: Facilities[]
 
-    const facilites = [
-        {
-            image:"/facilities/runbikeline.jpg",
-            slug:"run-bike-line",
-            title:"Bicycle & Jogging Track"
-        },
-        {
-            image:"/facilities/danau.jpg",
-            slug:"recreational-like",
-            title:"Recreational Like"
-        },
-        {
-            image:"/facilities/green-corridor.jpg",
-            slug:"green-corridor",
-            title:"Green Corridor"
-        },
-        {
-            image:"/facilities/runbikeline.jpg",
-            slug:"run-bike-line",
-            title:"Bicycle & Jogging Track"
-        },
-        {
-            image:"/facilities/runbikeline.jpg",
-            slug:"run-bike-line",
-            title:"Bicycle & Jogging Track"
-        },
-        {
-            image:"/facilities/runbikeline.jpg",
-            slug:"run-bike-line",
-            title:"Bicycle & Jogging Track"
-        },
-        
-    ]
+}
+
+const GridFacilites: React.FC<PropType> = (props) => {
+
+    const { facilites } = props
+
+    
 
   return (
     <div className="grid grid-cols-3">
@@ -47,7 +24,7 @@ const GridFacilites = () => {
                     key={index}>
                         <div className="relative w-full h-[80%]">
                         <Image
-                        src={facility.image}
+                        src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${facility.thumbnail_image.url}`}
                         fill
                         alt={facility.slug}
                         className="absolute object-cover object-center"

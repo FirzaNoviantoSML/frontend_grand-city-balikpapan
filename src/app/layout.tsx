@@ -2,8 +2,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import {Ubuntu} from "next/font/google"
-import Header from "@/components/Header";
+import Header from "@/components/headers/Header";
 import {LanguageProvider} from "@/contex/LanguageContext"
+import Footer from "@/components/Footer";
 
 
 const ubuntu  = Ubuntu({
@@ -37,6 +38,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Header/>
           {children}
+          <Footer/>
         </LanguageProvider>
       </body>
     </html>

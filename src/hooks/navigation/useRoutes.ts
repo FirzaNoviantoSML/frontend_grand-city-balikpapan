@@ -1,16 +1,23 @@
 "use client";
-
+import {useLanguage} from "@/contex/LanguageContext"
 import { usePathname } from "next/navigation";
-import { useMemo, useState, useEffect } from "react";
+import { useCallback,useMemo, useState, useEffect } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 export const useRoutes = () => {
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const {language} = useLanguage()
   const pathname = usePathname();
+  
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  const handleToggleDropdown = (key: string) => {
-    setActiveDropdown((prev) => (prev === key ? null : key));
-  };
+  const handleToggleDropdown = useCallback((key: string) => {
+  setActiveDropdown((prev) => {
+      if (prev === key) {
+        return null; // kalau klik dropdown yang sama → tutup
+      }
+      return key; // kalau beda → ganti aktif
+    });
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -25,17 +32,13 @@ export const useRoutes = () => {
 
   const routes = useMemo(
     () => [
+
       {
-        label: "Home",
-        href: "/",
-        active: pathname === "/",
-      },
-      {
-        label: "About Us",
+        label: language === "en" ? "About Us":"Tentang Kami",
         href: "/about",
         active: pathname.startsWith("/about"),
       },{
-        label: "Concept",
+        label: language === "en" ? "Concept":"Konsep",
         href: "/concept",
         active: pathname.startsWith("/concept"),
         icon: RiArrowDropDownLine,
@@ -43,7 +46,7 @@ export const useRoutes = () => {
         isOpen: activeDropdown === "concept",
       },
       {
-        label: "Developments",
+        label: language === "en" ? "Developments":"Development",
         href: "/developments",
         active: pathname.startsWith("/developments"),
         icon: RiArrowDropDownLine,
@@ -51,17 +54,17 @@ export const useRoutes = () => {
         isOpen: activeDropdown === "developments",
       },
       {
-        label: "Facilities",
+        label: language === "en" ? "Facilities":"Fasilitas",
         href: "/facilities",
         active: pathname.startsWith("/facilities"),
       },
       {
-        label: "News",
+        label: language === "en" ? "News":"Berita",
         href: "/news",
         active: pathname.startsWith("/news"),
       },
       {
-        label: "Contact Us",
+        label: language === "en" ? "Contact Us":"Kontak Kami",
         href: "/contact",
         active: pathname.startsWith("/contact"),
       },
@@ -76,8 +79,8 @@ export const useRoutes = () => {
         active: pathname.startsWith("/login"),
       },
     ],
-    [pathname, activeDropdown]
+    [handleToggleDropdown,language,pathname, activeDropdown]
   );
 
-  return { routes };
+  return { routes, activeDropdown, handleToggleDropdown  };
 };

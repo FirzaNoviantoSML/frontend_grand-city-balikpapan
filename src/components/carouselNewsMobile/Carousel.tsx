@@ -4,14 +4,10 @@ import { PrevButton, NextButton, usePrevNextButtons } from './carouselArrow'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
 import { IoChevronForwardSharp } from "react-icons/io5";
+import {NewsItem} from "@/types/news-promoListTypes"
 
-type ContentType = {
-    title:string,
-    image:string,
-    date:string,
-}
 type PropType = {
-    slides: ContentType[]
+    slides: NewsItem[]
     options?: EmblaOptionsType
 }
 
@@ -42,8 +38,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                              <div>
                                 <div>
                                     <Image
-                                        src={item.image}
-                                        alt={item.title}
+                                         src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.thumbnail.url}`}
+                                        alt={item.thumbnail.name}
                                         width={350}
                                         height={350}
                                         className="rounded-2xl shadow-md"

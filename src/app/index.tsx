@@ -9,14 +9,12 @@ import ResidentialHome from '@/components/ResidentialHome'
 import CommercialHome from '@/components/CommercialHome'
 import FacilitiesHome from '@/components/FacilitiesHome'
 import News from '@/components/News'
-import LocationHome from '@/components/LocationHome'
-import FooterImageRibbon from '@/components/FooterImageRibbon'
 import { useGetHomePage } from '@/hooks/homepage/useHomepage'
 
 const HomeIndex = () => {
 
   const {language} = useLanguage()
-    const { homePage,isLoading } = useGetHomePage("en");
+    const { homePage,isLoading } = useGetHomePage(language);
     
 
    if(isLoading){
@@ -37,9 +35,7 @@ const HomeIndex = () => {
         <CommercialHome/>
         <FacilitiesHome/>
         <News/>
-        <LocationHome/>
-        <FooterImageRibbon/>
-
+        
     </div>
   )
 }

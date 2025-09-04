@@ -1,9 +1,27 @@
+"use client"
 import React from 'react'
 import GridNews from './GridNews'
 import CarouselNews from './CarouselNews'
+import {useGetNewsPromosList} from "@/hooks/newsList/useRoutes"
+import {useLanguage} from "@/contex/LanguageContext"
+
 
 const News = () => {
-  return (
+
+    const {language} = useLanguage()
+    const {newsPromoData,isLoading} = useGetNewsPromosList(language)
+
+    if(isLoading){
+        return(
+            <div>
+
+            </div>
+        )
+    }
+
+
+
+    return (
         <div>
          <div className="relative bg-amber-50 py-8">
         <div>
@@ -17,10 +35,10 @@ const News = () => {
         </div>
 
         <div className="hidden md:flex justify-center">
-            <GridNews/>
+            <GridNews news={newsPromoData!}/>
         </div>
         <div className="md:hidden">
-            <CarouselNews/>
+            <CarouselNews news={newsPromoData!}/>
         </div>
         </div>
     </div>

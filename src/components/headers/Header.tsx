@@ -1,119 +1,47 @@
 "use client";
 import { useRoutes } from "@/hooks/navigation/useRoutes";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useEffect, useRef, useState } from "react";
-import { HiMenuAlt2 } from "react-icons/hi";
-import { IoMdSearch } from "react-icons/io";
+// import { FiSearch } from "react-icons/fi";
+import { useEffect, useRef, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import ButtonChangeLanguage from "./ButtonChangeLanguage";
+import HeaderMobileView from "./HeaderMobileView";
+import {useLanguage} from "@/contex/LanguageContext"
+import {useGetConceptList} from "@/hooks/conceptList/useRoutes"
+import { useGetDevelopmentThumbnailList } from "@/hooks/development/useRoutes";
+import {Development} from "@/types/developmentListTypes"
+import {useGetDevelopmentTypeThumbnailList} from "@/hooks/developmentsList/useRoutes"
 
 const Header = () => {
-  const { routes } = useRoutes();
-  const [handleSearch, setQuery ]  = useState("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isOpenMenuMobile, setIsOpenMenuMobile] = useState<boolean>(false);
-  const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { routes,handleToggleDropdown,activeDropdown } = useRoutes();
+  const [query, setQuery ]  = useState("");
+  const [isActiveMenuMobile, setisActiveMenuMobile] = useState<boolean>(false);
+  const refDropdown = useRef<HTMLDivElement>(null);
+  const [isScroll, setIsScroll] = useState<boolean>(false);
+  const {language} = useLanguage()
+  const {conceptData,isLoading} = useGetConceptList(language)
+  console.log(conceptData,"concept header")
+  const [development,setDevelopment] = useState<Development[]>()
+  const {developmentTypeData} = useGetDevelopmentTypeThumbnailList(language)
+  console.log(developmentTypeData,"developmentTypeData")
 
-  const concept = [
-    {
-        image:"/concept/icon-zone-wood.png",
-        label:"Wood Zone",
-        color:"#386641",
-        slug:"/wood-zone"
-
-    },
-    {
-        image:"/concept/icon-zone-water.png",
-        label:"Water zone",
-        color:"#006799",
-        slug:"/water-zone"
-
-    },
-    {
-        image:"/concept/icon-zone-earth.png",
-        label:"Earth Zone",
-        color:"#8D3802",
-        slug:"/earth-zone"
-
-    },
-    {
-        image:"/concept/icon-zone-fire.png",
-        label:"Fire Zone",
-        color:"#F26522",
-        slug:"/fire-zone"
-
-    },
-    {
-        image:"/concept/icon-zone-metal.png",
-        label:"Metal Zone",
-        color:"#6D6E71",
-        slug:"/metal-zone"
-
-    },
-  ]
-
-  const develoments = [
-    {
-      image:"/develompments/grandcity-residential.jpg",
-      label:"Residentials",
-      slug:"residentials"
-    },
-    {
-      image:"/develompments/grandcity-komersial.jpg",
-      label:"Commercial",
-      slug:"commercial"
-
-    }
-  ]
-
-  const searchRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
+  useClickOutside(refDropdown, () => handleToggleDropdown(""), !!activeDropdown);
+    useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScroll(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleClickMenuMobile = () => {
-    setIsOpenMenuMobile(!isOpenMenuMobile);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-        setIsOpenSearch(false);
-      }
-    };
-
-    if (isOpenSearch) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpenSearch, routes]);
-
-  useEffect(() => {
-    setIsOpen(routes.some((obj) => obj["isOpen"] === true));
-  }, [routes]);
-
-    const handleSubmitQueryInput = (e: FormEvent) => {
-
-    setIsOpenSearch(false);
-  };
-
-
+  
   return (
-    <div>
-
-    <header
+    <nav
       className={clsx(
         "md:fixed top-0 z-50 max-h-svh w-full transition-all duration-300  shadow-md p-0"
       )}
@@ -162,7 +90,7 @@ const Header = () => {
                   {route.label == "Concept" && (
                     <div>
                       <div className="flex justify-center gap-8">
-                        {concept.map((item,index) => {
+                        {conceptData && conceptData.map((item,index) => {
                             return(
                                 <Link
                                 onClick={route.onClick}
@@ -171,12 +99,12 @@ const Header = () => {
                                 className="bg-amber-50 py-6 px-16 text-center rounded-2xl shadow-md "
                                 >
                                     <Image
-                                    alt={item.label}
-                                    src={item.image}
+                                    alt={item.icon.url}
+                                    src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.icon.url}`}
                                     height={100}
                                     width={100}
                                     className="mb-4"/>
-                                <p style={{ color: item.color }}>{item.label}</p>
+                                <p style={{ color: item.color }}>{item.title}</p>
                                 </Link>
                             )
                         })}
@@ -195,18 +123,18 @@ const Header = () => {
                   {route.label === "Developments" && (
                     <div className="flex justify-center gap-12">
                       {
-                        develoments.map((item,index) => {
+                        developmentTypeData &&  developmentTypeData.map((item,index) => {
                           return(
                             <div className="text-neutral-500 hover:text-orange-500 text-center text-xl font-semibold"
                             key={index}>
                               <Image
-                              src={item.image}
-                              alt={item.label}
+                              src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.thumbnail.url}`}
+                              alt={item.thumbnail.name}
                               width={600}
                               height={300}
                               className="w-[350px] h-[200px] rounded-2xl"
                               />
-                              {item.label}
+                              {item.title}
                             </div>
                           )
                         })
@@ -218,33 +146,17 @@ const Header = () => {
             </li>
           ))}
         </ul>
-            <div ref={searchRef} className="flex gap-x-4 items-center">
-          <IoMdSearch
-            size={23}
-          />
-          
-        </div>
+        <section className="hidden xl:flex gap-4 items-center">
+        <div className="border-r-2 border-r-gray-400 min-h-7" />
+        <ButtonChangeLanguage />
+      </section>
+      {/* <HeaderMobileView
+      isOpen={isActiveMenuMobile}
+      isScroll={isScroll}
+      onClose={() => setisActiveMenuMobile(!isActiveMenuMobile)}/> */}
+           
       </div>
-    </header>
-    <header className={clsx(
-        "fixed md:hidden top-0 z-50 max-h-svh w-full transition-all duration-300  shadow-md p-0"
-      )}>
-        <div className="flex px-6 bg-amber-50 py-2 justify-end-safe gap-32">
-        <Link href="/" className="flex gap-x-2 items-center">
-          <Image
-            width={140}
-            height={120}
-            src="/logo-grandcitybalikpapan.png"
-            alt="logo Kota Wisata"
-            priority
-          />
-        </Link>
-        <div>
-         =
-        </div>
-        </div>
-    </header>
-    </div>
+    </nav>
   );
 };
 

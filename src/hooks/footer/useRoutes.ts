@@ -1,16 +1,16 @@
-import {getHomepage} from "@/api/homepage/getHomepage"
-import {HomePageData} from "@/types/homepageTypes"
+import {getFooter} from "@/api/footer/getFooter"
 import { useEffect, useState } from "react";
+import {Footer} from "@/types/footerTypes"
 
-export const useGetHomePage = (lang: "en" | "id") => {
-  const [homePage, setHomePage] = useState<HomePageData>();
+export const useGetFooter = (lang: "en" | "id") => {
+  const [footerData, setFooterData] = useState<Footer>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getHomepage(lang) ;
-        setHomePage(response);
+        const response = await getFooter(lang) ;
+        setFooterData(response);
       } catch (error) {
         console.log("ERROR SAAT FETCH:", error);
       } finally {
@@ -21,5 +21,5 @@ export const useGetHomePage = (lang: "en" | "id") => {
     fetchData();
   }, [lang]);
 
-  return { homePage, isLoading };
+  return { footerData, isLoading };
 };

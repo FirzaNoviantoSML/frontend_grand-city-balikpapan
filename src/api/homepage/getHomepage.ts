@@ -35,7 +35,7 @@ export const getHomepage = async (lang: "en" | "id") => {
     },
     });
 
-    const response = await axiosInstance.get(`/home-page?${query}`);
+    const response = await axiosInstance.get(`home-page?${query}`);
     return response.data.data;
   } catch (error) {
     console.log("Error fetching homepage data:", error);

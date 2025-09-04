@@ -2,8 +2,14 @@
 'use client'
 
 import { useState } from 'react'
+import {Project} from '@/types/footerTypes'
 
-export default function Dropdown() {
+type PropType = {
+  project:Project[]
+}
+
+const Dropdown: React.FC<PropType> = (props) => {
+  const {project} = props
   const [open, setOpen] = useState(false)
   const [selected,setSelected] = useState("Grand City Balikpapan")
 
@@ -30,20 +36,22 @@ export default function Dropdown() {
       </button>
 
       {open && (
-        <div className="absolute left-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-gray-500 ring-opacity-5">
+        <div className="absolute left-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-gray-500 ring-opacity-5 z-10">
           <div>
-            <a href="https://www.grandcitybalikpapan.com" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 m-1 hover:rounded-md" onClick={() =>setSelected("Grand City Balikpapan")}>
-              Grand City Balikpapan
+            {
+              project.map((item,index) => {
+                return(
+                  <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 m-1 hover:rounded-md" onClick={() =>setSelected(item.title)}>
+              {item.title}
             </a>
-            <a href="https://www.grandwisatabekasi.com" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 m-1 hover:rounded-md" onClick={() =>setSelected("Grand Wisata Bekasi")}>
-              Grand Wisata Bekasi
-            </a>
-            <a href="https://www.sinarmasland.com" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 m-1 hover:rounded-md" onClick={() =>setSelected("Sinarmas Land Indonesia")}>
-              Sinarmas Land Indonesia
-            </a>
+                )
+              })
+            }
           </div>
         </div>
       )}
     </div>
   )
 }
+
+export default Dropdown

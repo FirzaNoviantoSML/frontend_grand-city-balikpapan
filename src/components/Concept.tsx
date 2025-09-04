@@ -12,6 +12,7 @@ import {useGetConceptList} from "@/hooks/conceptList/useRoutes"
 const Concept = () => {
     const {language} = useLanguage()
     const {conceptData,isLoading} = useGetConceptList(language)
+    console.log("concept halaman home",conceptData)
 
     if(isLoading){
     return (
