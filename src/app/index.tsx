@@ -28,13 +28,13 @@ const HomeIndex = () => {
   return (
     <div>
         <EmblaCarousel slides={homePage!.carousel_banner}/>
-        <VideoTestimoni homePageData={homePage!}/>
-        <Concept/>
-        <BannerHome hero_banner={homePage?.zone_image.url}/>
-        <ResidentialHome/>
-        <CommercialHome/>
-        <FacilitiesHome/>
-        <News/>
+        <VideoTestimoni homePageData={homePage!} language={language}/>
+        <Concept language={language}/>
+        <BannerHome hero_banner={homePage?.zone_image.url} language={language}/>
+        <ResidentialHome language={language}/>
+        <CommercialHome language={language}/>
+        <FacilitiesHome language={language}/>
+        <News language={language}/>
         
     </div>
   )

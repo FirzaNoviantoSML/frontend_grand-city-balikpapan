@@ -4,10 +4,14 @@ import Image from 'next/image'
 import { BsQuote } from 'react-icons/bs'
 import EmblaCarousel from './carouselTestimonialMobile/Carousel'
 import {useGetTestimonials} from "@/hooks/testimonial/useRoutes"
-import {useLanguage} from "@/contex/LanguageContext"
-const Testimoni = () => {
-    const {language} = useLanguage()
-  const {testimonial,isLoading} = useGetTestimonials(language)
+
+
+type PropType = {
+    language: "en" | "id"
+}
+const Testimoni: React.FC<PropType> = (props) => {
+    const {language} = props
+    const {testimonial,isLoading} = useGetTestimonials(language)
 
   if(isLoading){
     return(

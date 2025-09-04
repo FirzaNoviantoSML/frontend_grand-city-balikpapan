@@ -7,10 +7,11 @@ import {HomePageData} from "@/types/homepageTypes"
 
 type PropType = {
     homePageData: HomePageData
+    language:"en" | "id"
 }
 
 const VideoTestimoni:React.FC<PropType> = (props) => {
-      const { homePageData } = props
+      const { homePageData,language } = props
   return (
     <div className="relative bg-amber-50 pb-12">
             <div className='absolute top-0 left-0' >
@@ -36,7 +37,7 @@ const VideoTestimoni:React.FC<PropType> = (props) => {
     thumbnail_video_name={homePageData.thumbnail_video.name}
     url_video={homePageData.link_video}
     />
-    <Testimoni/>
+    <Testimoni language={language}/>
     <div>
 
     </div>

@@ -3,12 +3,15 @@ import React from 'react'
 import Image from 'next/image'
 import CarouselResidentials from './CarouselResidentials'
 import {useGetDevelopmentThumbnailList} from "@/hooks/development/useRoutes"
-import {useLanguage} from "@/contex/LanguageContext"
 
 
-const ResidentialHome = () => {
+type PropType = {
+  language:"en" | "id"
+}
 
-  const {language} = useLanguage()
+const ResidentialHome: React.FC<PropType> = (props) => {
+  const {language} = props
+
   const {developmentData,isLoading} = useGetDevelopmentThumbnailList(language,"Residential")
 
 

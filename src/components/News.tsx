@@ -3,12 +3,13 @@ import React from 'react'
 import GridNews from './GridNews'
 import CarouselNews from './CarouselNews'
 import {useGetNewsPromosList} from "@/hooks/newsList/useRoutes"
-import {useLanguage} from "@/contex/LanguageContext"
 
+type PropType = {
+    language: "en" | "id"
+}
 
-const News = () => {
-
-    const {language} = useLanguage()
+const News: React.FC<PropType> = (props) => {
+    const {language} = props
     const {newsPromoData,isLoading} = useGetNewsPromosList(language)
 
     if(isLoading){
@@ -28,7 +29,7 @@ const News = () => {
             <div className="flex justify-center">
             <div className="text-center">
             <p className="text-[#834520] text-2xl font-bold border-b-3 inline-block mb-2">
-                News
+                {language === "en" ? "News":"Berita"}
             </p>
             </div>
         </div>

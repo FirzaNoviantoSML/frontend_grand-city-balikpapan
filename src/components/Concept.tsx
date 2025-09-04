@@ -4,15 +4,16 @@ import React from 'react'
 import Image from 'next/image'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import EmblaCarousel from './carouselConceptlMobile/Carousel';
-import {useLanguage} from "@/contex/LanguageContext"
 import {useGetConceptList} from "@/hooks/conceptList/useRoutes"
  
+type PropType = {
+    language: "en" | "id"
+}
 
+const Concept: React.FC<PropType> = (props) => {
+    const {language} = props
 
-const Concept = () => {
-    const {language} = useLanguage()
     const {conceptData,isLoading} = useGetConceptList(language)
-    console.log("concept halaman home",conceptData)
 
     if(isLoading){
     return (
@@ -80,7 +81,7 @@ const Concept = () => {
             }
         </div>
         <div className="md:hidden block">
-            <EmblaCarousel slides={conceptData!}/>
+            <EmblaCarousel slides={conceptData!} language={language}/>
         </div>
         
         </div>

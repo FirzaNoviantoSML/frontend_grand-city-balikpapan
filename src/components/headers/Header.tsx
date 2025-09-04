@@ -12,8 +12,6 @@ import ButtonChangeLanguage from "./ButtonChangeLanguage";
 import HeaderMobileView from "./HeaderMobileView";
 import {useLanguage} from "@/contex/LanguageContext"
 import {useGetConceptList} from "@/hooks/conceptList/useRoutes"
-import { useGetDevelopmentThumbnailList } from "@/hooks/development/useRoutes";
-import {Development} from "@/types/developmentListTypes"
 import {useGetDevelopmentTypeThumbnailList} from "@/hooks/developmentsList/useRoutes"
 
 const Header = () => {
@@ -23,12 +21,8 @@ const Header = () => {
   const refDropdown = useRef<HTMLDivElement>(null);
   const [isScroll, setIsScroll] = useState<boolean>(false);
   const {language} = useLanguage()
-  const {conceptData,isLoading} = useGetConceptList(language)
-  console.log(conceptData,"concept header")
-  const [development,setDevelopment] = useState<Development[]>()
+  const {conceptData} = useGetConceptList(language)
   const {developmentTypeData} = useGetDevelopmentTypeThumbnailList(language)
-  console.log(developmentTypeData,"developmentTypeData")
-
   useClickOutside(refDropdown, () => handleToggleDropdown(""), !!activeDropdown);
     useEffect(() => {
     const handleScroll = () => {
@@ -85,7 +79,7 @@ const Header = () => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
 
-                  className="absolute left-0 top-full w-screen flex items-center justify-center text-white bg-primary py-5 bg-amber-50 shadow-md"
+                  className="absolute left-0 top-full w-screen flex items-center justify-center bg-primary py-5 bg-amber-50 shadow-md"
                 >
                   {route.label == "Concept" && (
                     <div>
@@ -104,7 +98,9 @@ const Header = () => {
                                     height={100}
                                     width={100}
                                     className="mb-4"/>
-                                <p style={{ color: item.color }}>{item.title}</p>
+                                    <p style={{ color: item.color }}>
+                                    {item.title}
+                                    </p>
                                 </Link>
                             )
                         })}
@@ -125,8 +121,10 @@ const Header = () => {
                       {
                         developmentTypeData &&  developmentTypeData.map((item,index) => {
                           return(
-                            <div className="text-neutral-500 hover:text-orange-500 text-center text-xl font-semibold"
-                            key={index}>
+                            <Link
+                            key={index}
+                            href={"#"}>
+                            <div className="text-neutral-500 hover:text-orange-500 text-center text-xl font-semibold">
                               <Image
                               src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.thumbnail.url}`}
                               alt={item.thumbnail.name}
@@ -135,7 +133,8 @@ const Header = () => {
                               className="w-[350px] h-[200px] rounded-2xl"
                               />
                               {item.title}
-                            </div>
+                            </div>         
+                            </Link>
                           )
                         })
                       }

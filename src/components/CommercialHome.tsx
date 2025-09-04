@@ -3,11 +3,16 @@ import React from 'react'
 import Image from 'next/image'
 import CarouselCommercial from './CarouselCommercial'
 import {useGetDevelopmentThumbnailList} from "@/hooks/development/useRoutes"
-import {useLanguage} from "@/contex/LanguageContext"
 
-const CommercialHome = () => {
+type PropType = {
+    language:"en" | "id"
+}
 
-const {language} = useLanguage()
+const CommercialHome: React.FC<PropType> = (props)=> {
+
+    const {language} = props
+
+
 const {developmentData,isLoading} = useGetDevelopmentThumbnailList(language,"Commercial")
 
 if(isLoading){

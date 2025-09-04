@@ -4,11 +4,14 @@ import React from 'react'
 import GridFacilites from './GridFacilites'
 import CarouselFacilities from './CarouselFacilities'
 import {useGetFacilites} from '@/hooks/facilityList/useRoutes'
-import {useLanguage} from '@/contex/LanguageContext'
 
+type PropType = {
+  language: "en" | "id"
+}
 
-const FacilitiesHome = () => {
-  const {language} = useLanguage()
+const FacilitiesHome: React.FC<PropType> = (props) => {
+
+  const {language} = props
   const {facilitesData,isLoading} = useGetFacilites(language)
   console.log("page facility",facilitesData)
 

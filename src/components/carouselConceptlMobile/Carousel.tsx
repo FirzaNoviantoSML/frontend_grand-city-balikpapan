@@ -10,11 +10,12 @@ import {Concept} from "@/types/conceptListTypes"
 type PropType = {
     slides: Concept[]
     options?: EmblaOptionsType
+    language: "en" | "id"
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
 
-    const { slides } = props
+    const { slides,language } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
 
 

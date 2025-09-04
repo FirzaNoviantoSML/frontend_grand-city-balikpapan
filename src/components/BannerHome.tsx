@@ -3,9 +3,10 @@ import React from 'react'
 import Image from 'next/image'
 type PropType = {
     hero_banner: string | undefined
-}
+    language: "en" | "id"
+ }
 const BannerHome:React.FC<PropType> = (props) => {
-  const {hero_banner} = props
+  const {hero_banner,language} = props
   return (
     <div className="relative w-full h-48">
         <Image
@@ -17,7 +18,7 @@ const BannerHome:React.FC<PropType> = (props) => {
         />
         <div className="flex justify-center">
         <button className="absolute top-1/2 text-white border-2 border-white px-6 py-3 rounded-md font-bold hover:bg-white hover:text-black cursor-pointer">
-            View All Zone
+            {language === "en" ? "View All Zone":"Lihat Semua Zona"}
         </button>
         </div>
     </div>
