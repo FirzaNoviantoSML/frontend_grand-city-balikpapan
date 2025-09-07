@@ -1,150 +1,172 @@
 "use client"
-import { useRef } from "react";
+import { useRef, useEffect,useState } from "react";
 import { useRoutes } from "@/hooks/navigation/useRoutes"
 import SlideIn from "@/components/animate/SlideIn";
 import clsx from "clsx";
 import Link from "next/link";
 import { motion } from "framer-motion";
-// import { useGetAllUnit } from "@/hooks/units/useGetAllUnits";
 import Image from "next/image";
 import { useLanguage } from "@/contex/LanguageContext";
-import ButtonChangeLanguage from "./ButtonChangeLanguage";
-// import { useSearch } from "@/hooks/useSearch";
-import { FaBarsStaggered } from "react-icons/fa6";
+import { MdClose } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
+import ButtonChangeLanguageMobile from "./ButtonChangeLanguageMobile";
+import {Concept} from "@/types/conceptListTypes"
+
+type DevelopmentType = {
+    title:string,
+    slug:string,
+    thumbnail:{
+        url:string,
+        name:string
+    }
+}
 
 interface HeaderMobileProps {
   isOpen: boolean;
   onClose: () => void;
   isScroll: boolean;
+  concept : Concept[]
+  development : DevelopmentType[]
 }
 
 const HeaderMobileView: React.FC<HeaderMobileProps> = ({
   isOpen,
   isScroll,
   onClose,
+  concept,
+  development
 }) => {
-    const { routes, activeDropdown, handleToggleDropdown  } = useRoutes();
-    // const { handleChange, handleSearch, query } = useSearch("");
-    const refDropdown = useRef<HTMLDivElement>(null);
-    // const {unitData} = useGetAllUnit()
+  const { routes, activeDropdown } = useRoutes();
+  const refDropdown = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
+   const [query, setQuery] = useState("");
 
-    const handleClose = () => {
-    handleToggleDropdown()
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
     onClose()
-  }
 
-   const {language} = useLanguage()
+    // tambahkan logika search di sini
+  };
 
+  // 🔒 Scroll lock effect
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto"; // cleanup
+    };
+  }, [isOpen]);
 
-    return (
+  return (
     <SlideIn
       isOpen={isOpen}
       widthFull
       position="right"
-      className={clsx("px-4", isScroll ? "" : "py-4")}
+      className={clsx("px-4 py-4 max-w-full overflow-x-hidden")}
     >
-      <div className="flex justify-between items-center">
+      {/* Header Logo + Close */}
+      <div className="flex items-center justify-between w-full">
         <Image
-        src="/logo-grandcitybalikpapan.png"
-        alt="logo Grand City Balikpapan"
-        width="20"
-        height={10}
+          src="/logo-grandcitybalikpapan.png"
+          alt="logo Grand City Balikpapan"
+          width={100}
+          height={10}
+          className="max-w-full h-auto"
         />
-        <div className="flex gap-6">
-          <ButtonChangeLanguage />
-          <button
-            onClick={onClose}
-            className="bg-primary-blue p-3 rounded-full text-white md:hidden flex"
-          >
-            <FaBarsStaggered size={25} />
-          </button>
-        </div>
+        <button
+          onClick={onClose}
+          className="bg-primary-blue p-3 rounded-full text-neutral-500 md:hidden flex"
+        >
+          <MdClose size={25} />
+        </button>
       </div>
 
-      <nav className="flex flex-col gap-4 px-3 text-white mt-10">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSearch(e);
-            onClose()
-            
-          }}
-          className="flex justify-between items-center border-b pb-4"
-        >
-          {/* <input
-            type="text"
-            className="outline-none w-full"
-            placeholder={language === "en"?"Search":"Cari"}
-            autoComplete="off"
-            value={query}
-            onChange={handleChange}
-          /> */}
-          <IoSearch size={20} className="cursor-pointer" />
-        </form>
+      {/* Navigation */}
+      <nav className="flex flex-col gap-2 px-3 text-white mt-10 relative">
 
-        {routes.map((route, idx) => (
-          <div key={route.label} className={routes.length - 1 === idx ? "" : "border-b"}>
-                  <Link
-                    href={route.link}
-                    onClick={route.onClick ? route.onClick : handleClose}
-                    className={clsx(
-                      "text-xl pb-4 text-gray-400 hover:text-white transition-all duration-200",
-                      route.active ? "font-semibold text-white" : " font-medium",
-                    )}
-                  >
-              <div className="flex justify-start items-center">
-                  {route.label}
-                  {route.icon && <route.icon />}
-              </div>
-                </Link>
 
-          {activeDropDown && (route.label === "Developments" || route.label === "Development"  ) && (
-          <motion.div
-            ref={refDropdown}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="flex flex-col gap-1 top-14 left-[33%] min-w-28 rounded-b-lg p-2 text-gray-400"
-          >
-           { (unitData ?? []).map((item, index) => (
-            <Link
-              key={index}
-              href={`/developments/${item.slug}`}
-              onClick={handleClose}
-            >
-              <div className="flex justify-start gap-2 ">
-                <div className="w-[50px] h-[50px]  relative ">
-                <Image
-                alt={item.unit_name}
-                src={`${item.banner.url}`}
-                fill
-                className="rounded-md object-cover"
-                />
-                </div>
-                <div className="flex justify-center flex-col">
-                  <div className="font-bold">
-                  {item.unit_name}
-                </div>
-                <div className="text-sm">
-                {item.development}
-                </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-          </motion.div>
-        )}   
-      
-          </div>
-        )
+        {/* Routes */}
+ {routes.map((route) => (
+  <div key={route.label} className="border-b dropdown-container">
+    {route.onClick ? (
+      <button
+        onClick={route.onClick}
+        className={clsx(
+          "text-xl text-neutral-500 hover:text-white transition-all duration-200 block",
+          route.active ? "font-semibold text-amber-500" : "font-medium"
         )}
-      
-        
+      >
+        <div className="flex items-center justify-start gap-1">
+          {route.label}
+          {route.icon && <route.icon />}
+        </div>
+      </button>
+    ) : (
+      <Link
+        target={route.target}
+        href={route.href}
+        className={clsx(
+          "text-xl text-neutral-500 hover:text-white transition-all duration-200 block",
+          route.active ? "font-semibold text-amber-500" : "font-medium"
+        )}
+      >
+        {route.label}
+      </Link>
+    )}
+
+    {/* Dropdown Concept */}
+    {activeDropdown === "concept" && route.label.toLowerCase().includes("concept") && (
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+        className="mt-2 flex flex-col gap-1 rounded-b-lg p-2 text-gray-400"
+      >
+        {concept.map((item, index) => (
+          <div key={index}>{item.title}</div>
+        ))}
+      </motion.div>
+    )}
+
+    {/* Dropdown Developments */}
+    {activeDropdown === "developments" && route.label.toLowerCase().includes("development") && (
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+        className="mt-2 flex flex-col gap-1 rounded-b-lg p-2 text-gray-400"
+      >
+        {development.map((item, index) => (
+          <div key={index}>{item.title}</div>
+        ))}
+      </motion.div>
+    )}
+  </div>
+))}
+
+                {/* Search form */}
+      <form onSubmit={handleSearch} className="relative w-full max-w-md text-neutral-500 ">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search..."
+            className="w-full border border-gray-300 bg-white py-2 pl-10 pr-4 text-sm focus:border-neutral-500 focus:ring-2 focus:ring-neutral-500 outline-none shadow-sm"
+          />
+          <IoSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+    </form>
+    <div className="flex justify-center border-t-1 border-neutral-200 pt-3">
+    <ButtonChangeLanguageMobile/>
+    </div>
       </nav>
     </SlideIn>
   );
 }
 
-export default HeaderMobileView
+export default HeaderMobileView;
+

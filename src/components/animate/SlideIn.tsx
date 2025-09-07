@@ -27,8 +27,8 @@ const SlideIn = forwardRef<HTMLDivElement, SlideInProps>(
             exit={variants[position].exit}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className={clsx(
-              "fixed top-0 z-50 bg-gray-900 shadow-lg",
-              widthFull && "h-full w-full",
+              "fixed top-0 z-50 bg-amber-50 shadow-lg",
+              widthFull && "h-full w-[90%]",
               position === "left"  && "left-0",
               position === "right" && "right-0",
               position === "top"   && "left-0 w-full",

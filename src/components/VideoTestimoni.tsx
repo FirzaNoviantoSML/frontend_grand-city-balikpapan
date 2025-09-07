@@ -13,7 +13,7 @@ type PropType = {
 const VideoTestimoni:React.FC<PropType> = (props) => {
       const { homePageData,language } = props
   return (
-    <div className="relative bg-amber-50 pb-12">
+    <div className="relative bg-amber-50 pb-12 z-0">
             <div className='absolute top-0 left-0' >
             <Image 
             src={"/background/bgleaflefts.jpg"}

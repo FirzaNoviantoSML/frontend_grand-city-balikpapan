@@ -36,7 +36,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [])
 
     return (
-        <section className="relative">
+        <section className="relative z-0">
             <div ref={emblaRef} className="overflow-hidden ">
                 <div className="flex -ml-4 touch-pan-y">
                     {slides.map((item, idx) => (
@@ -49,7 +49,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                                 src={isMobile?`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.hero_banner_portrait.url}`:`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.hero_banner_landscape.url}`}
                                 alt={isMobile?item.hero_banner_portrait.name:item.hero_banner_landscape.name}
                                 fill
-                                className="object-cover brightness-50"
+                                className="object-cover brightness-50 z-0"
                             />
 
                             </div>

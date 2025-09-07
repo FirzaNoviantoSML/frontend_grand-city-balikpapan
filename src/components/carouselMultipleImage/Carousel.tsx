@@ -80,7 +80,7 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                         </div>
                     ))}
                 </div>
-                 <div className="flex justify-between items-center gap-5  w-full absolute top-1/2 -translate-y-1/2 z-50">
+                 <div className="flex justify-between items-center gap-5  w-full absolute top-1/2 -translate-y-1/2 z-10">
                     <PrevButton
                         onClick={onPrevButtonClick}
                         disabled={prevBtnDisabled}

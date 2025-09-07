@@ -28,15 +28,15 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
 
     return (
-        <section>
-            <div ref={emblaRef} className="relative overflow-hidden cursor-grab">
+        <section className="relative z-0">
+            <div ref={emblaRef} className="relative overflow-hidden cursor-grab z-0">
                 <div className="flex touch-pan-y ">
                     {slides.map((item, index) => (
                         <div
-                            key={index}
-                            className="relative w-full overflow-hidden items-center flex justify-center  group  h-[25vh] flex-0 shrink-0 grow-0 basis-full"
-                            >
-                            <div className="px-6 w-[80vw]">
+                        key={index}
+                        className="relative w-full overflow-hidden items-center flex justify-center  group  h-[25vh] flex-0 shrink-0 grow-0 basis-full z-0"
+                        >
+                            <div className="ml-4">
                                 <div className="flex items-start mb-2">
                                 <BsQuote className="text-neutral-400 text-2xl" />
                                 <p className="text-neutral-700 italic mb-4">{item.quote}</p>
@@ -47,7 +47,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                                 src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.profile_picture!.url}`}
                                 alt={item.profile_picture!.name}
                                     fill
-                                    className="object-cover rounded-full"
+                                    className="object-cover rounded-full z-0"
                                     />
                                 </div>
                                    <div className='text-md text-amber-800 font-semibold italic col-span-3 pl-12'>
@@ -55,10 +55,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                                 </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>  
                     ))}
                 </div>
-            <div className="flex justify-between gap-5 absolute  w-full top-1/4">
+                <div className="flex justify-between gap-5 absolute  w-full top-1/4">
                 <PrevButton
                     onClick={onPrevButtonClick}
                     disabled={prevBtnDisabled}
@@ -68,7 +68,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     disabled={nextBtnDisabled}
                 />
 
-            </div>
+                </div>
             </div>
 
         </section>
