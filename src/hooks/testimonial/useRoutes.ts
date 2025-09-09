@@ -10,7 +10,6 @@ export const useGetTestimonials = (lang: "en" | "id") => {
     const fetchData = async () => {
       try {
         const response = await getTestimonial(lang) ;
-        console.log("hooks testimonial",response)
         setTestimonial(response);
       } catch (error) {
         console.log("ERROR SAAT FETCH:", error);

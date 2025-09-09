@@ -19,7 +19,6 @@ export const useGetDevelopmentTypeThumbnailList = (lang: "en" | "id") => {
     const fetchData = async () => {
       try {
         const response = await getDevelopmentTypeThumbnailList(lang) ;
-        console.log("developmentsType Response",response)
         setdevelopmentType(response);
       } catch (error) {
         console.log("ERROR SAAT FETCH:", error);

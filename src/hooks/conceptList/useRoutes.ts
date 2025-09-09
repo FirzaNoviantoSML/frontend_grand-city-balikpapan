@@ -10,7 +10,6 @@ export const useGetConceptList = (lang: "en" | "id") => {
     const fetchData = async () => {
       try {
         const response = await getConceptThumbnailList(lang) ;
-        console.log("hooks Concept",response)
         setConcept(response);
       } catch (error) {
         console.log("ERROR SAAT FETCH:", error);

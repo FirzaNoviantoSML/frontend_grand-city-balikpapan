@@ -15,7 +15,6 @@ export const getNewsPromoList = async (lang: "en" | "id") => {
     });
 
     const response = await axiosInstance.get(`/content-news-promos?${query}`);
-    console.log("respon testimonial",response.data.data)
     return response.data.data;
   } catch (error) {
     console.log("Error fetching homepage data:", error);

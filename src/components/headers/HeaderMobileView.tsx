@@ -31,7 +31,6 @@ interface HeaderMobileProps {
 
 const HeaderMobileView: React.FC<HeaderMobileProps> = ({
   isOpen,
-  isScroll,
   onClose,
   concept,
   development
@@ -108,6 +107,7 @@ const HeaderMobileView: React.FC<HeaderMobileProps> = ({
       <Link
         target={route.target}
         href={route.href}
+        onClick={onClose}
         className={clsx(
           "text-xl text-neutral-500 hover:text-white transition-all duration-200 block",
           route.active ? "font-semibold text-amber-500" : "font-medium"

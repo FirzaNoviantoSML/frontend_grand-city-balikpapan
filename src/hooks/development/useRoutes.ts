@@ -10,7 +10,6 @@ export const useGetDevelopmentThumbnailList = (lang: "en" | "id",development:"Re
     const fetchData = async () => {
       try {
         const response = await getDevelopmentThumbnailList(lang,development) ;
-        console.log("hooks developments",response)
         setdevelopment(response);
       } catch (error) {
         console.log("ERROR SAAT FETCH:", error);

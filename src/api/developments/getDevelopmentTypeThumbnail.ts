@@ -32,7 +32,6 @@ export const getDevelopmentTypeThumbnailList = async (lang: "en" | "id") => {
         } 
       },
   ]
-  console.log("development Data API",developmentData)
       return developmentData
     }
 

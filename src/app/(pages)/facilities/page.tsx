@@ -1,8 +1,11 @@
 import React from 'react'
+import FacilityIndex from './components/FacilityIndex'
 
 const Facilities = () => {
   return (
-    <div className='mt-48'>Facilities</div>
+    <div>
+      <FacilityIndex/>
+    </div>
   )
 }
 

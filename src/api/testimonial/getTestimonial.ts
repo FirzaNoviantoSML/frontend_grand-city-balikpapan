@@ -15,7 +15,6 @@ export const getTestimonial = async (lang: "en" | "id") => {
     });
 
     const response = await axiosInstance.get(`/testimonials?${query}`);
-    console.log("respon testimonial",response.data.data)
     return response.data.data;
   } catch (error) {
     console.log("Error fetching homepage data:", error);

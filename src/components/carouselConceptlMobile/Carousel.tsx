@@ -15,7 +15,7 @@ type PropType = {
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
 
-    const { slides,language } = props
+    const { slides } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
 
 

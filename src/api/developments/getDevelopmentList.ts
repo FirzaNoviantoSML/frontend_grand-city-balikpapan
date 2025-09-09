@@ -25,7 +25,6 @@ export const getDevelopmentThumbnailList = async (lang: "en" | "id",development:
   }
 });
     const response = await axiosInstance.get(`/developments?${query}`);
-    console.log("development concept",response.data.data)
     return response.data.data;
   } catch (error) {
     console.log("Error fetching homepage data:", error);
