@@ -14,7 +14,7 @@ const Video:React.FC<PropType> = (props)=> {
   const {thumbnail_video,url_video,thumbnail_video_name} = props
   return (
     <div>
-            <div className="relative z-20  py-16 font-serif px-6 md:px-0">
+            <div className="relative z-20 font-serif px-6 md:px-0">
         
         <div className="flex justify-center mt-12">
         <div className="relative w-[100%] md:w-[70%] h-[25vh] lg:h-[50vh]">

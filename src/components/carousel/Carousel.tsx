@@ -36,13 +36,13 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [])
 
     return (
-        <section className="relative z-0">
+        <section className="relative z-0 ">
             <div ref={emblaRef} className="overflow-hidden ">
                 <div className="flex -ml-4 touch-pan-y">
                     {slides.map((item, idx) => (
                         <div
                             key={idx}
-                            className="relative w-full overflow-hidden flex items-center justify-center group  h-[73vh] md:h-[78vh] flex-0 shrink-0 grow-0 basis-full min-w-0 md:pl-4 transform translate-x-0"
+                            className="relative w-full overflow-hidden flex items-center justify-center group  h-[50vh] md:h-[32vh] lg:h-[73vh] flex-0 shrink-0 grow-0 basis-full min-w-0 md:pl-4 transform translate-x-0 shadow-2xl"
                         >
                             <div>
                                 <Image
@@ -51,12 +51,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                                 fill
                                 className="object-cover brightness-50 z-0"
                             />
-
                             </div>
-
-                            <div className="flex md:justify-start justify-center absolute top-1/2 md:top-64 text-white  text-center md:text-left md:left-42  w-full md:w-[300px] z-10">
+                            <div className="flex md:justify-start justify-center absolute top-1/3 lg:top-2/8 md:top-2/8 text-white  text-center md:text-left md:left-42  w-full md:w-[300px] lg:w-[350px] z-10 ">
                                 <div className="items-center md:block">
-                                    <p className='font-extralight text-2xl md:text-5xl w-[150px] md:w-full'>
+                                    <p className='font-extralight text-2xl md:text-3xl lg:text-5xl w-[150px] md:w-full lg:w-full'>
                                 {item.title}
                                 </p>
                                 <button className="bg-white text-amber-600 h-10 w-38 rounded-md font-bold mt-6 cursor-pointer"
@@ -70,7 +68,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 </div>
             </div>
 
-            <div className="flex justify-between gap-5  w-full absolute top-1/2">
+            <div className="flex justify-between gap-5  w-full absolute bottom-1/2">
                 <PrevButton
                     onClick={onPrevButtonClick}
                     disabled={prevBtnDisabled}

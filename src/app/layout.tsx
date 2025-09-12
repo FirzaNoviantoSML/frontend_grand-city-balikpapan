@@ -37,7 +37,9 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <Header/>
+          <div className="mt-16">
           {children}
+          </div>
           <Footer/>
         </LanguageProvider>
       </body>

@@ -16,7 +16,7 @@ type PropType = {
 const EmblaCarousel: React.FC<PropType> = (props) => {
 
     const { slides } = props
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false })
 
 
     const {
@@ -35,7 +35,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     {slides.map((item, index) => (
                         <div
                             key={index}
-                            className="relative overflow-hidden items-center flex justify-center  group flex-0 shrink-0 grow-0 basis-11/12 bg-[#FFFCDF]"
+                            className="relative overflow-hidden items-center flex justify-center  group flex-0 shrink-0 grow-0 basis-11/12 md:basis-4/12 bg-[#FFFCDF]"
                             >
                         <div className="relative w-[100vw] h-[40vh] bg-[#FFFCDF] px-4"
                         key={index}>
