@@ -1,6 +1,7 @@
 import React from 'react'
-import FacilityDetailIndex from './components/FacilitySingleIndex';
+
 import {getMetadata} from '@/api/metadata/getMetadata'
+import AboutPage from './component/AboutPage'
 import {MetadataData} from "@/types/MetadataType"
 import type {Metadata} from "next"
 import type {Viewport} from 'next'
@@ -9,19 +10,13 @@ export const viewport: Viewport = {
   themeColor: '#ffffff'
 }
 
-export async function generateMetadata({
-    params,
+export async function generateMetadata(): Promise<Metadata> {
+  const data:MetadataData = await getMetadata("about-us")
+  const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
 
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-const { slug } = await params;
-const data:MetadataData = await getMetadata("facilities",slug)
-const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
+  const logoUrl = `/Logo_grandcitybalikpapan.png`;
 
-const logoUrl = `/Logo_grandcitybalikpapan.png`;
-
-const jsonLd = {
+  const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Grand City Balikpapan",
@@ -37,10 +32,10 @@ const jsonLd = {
     }
   };
 
-const title = data?.description || "Facilities | Grand City Balikpapan";
-const description = data?.description || "Selamat datang di Grand City Balikpapan";
-const url = `${process.env.NEXT_PUBLIC_SITE_URL}`;
-const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} ${data.image?.url}` : logoUrl ;
+  const title = data.title ||  "About Us | Grand City Balikpapan";
+  const description = data?.description || "Selamat datang di Grand City Balikpapan";
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}`;
+  const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} ${data.image?.url}` : logoUrl ;
   return {
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
     title,
@@ -84,17 +79,12 @@ const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} $
   };
 }
 
-
-
-
-const  FacilitiesDetail = async ({ params }: {params:Promise<{ slug:string}>}) => {
-      const getParams = async () => params;
-  const { slug } = await getParams();
+const page = () => {
   return (
     <div>
-        <FacilityDetailIndex slug={slug}/>
+        <AboutPage/>
     </div>
   )
 }
 
-export default FacilitiesDetail 
+export default page

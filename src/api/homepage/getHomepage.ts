@@ -22,16 +22,6 @@ export const getHomepage = async (lang: "en" | "id") => {
             },
         },
         },
-        metadata: {
-        populate: {
-            image: {
-            fields: ["url", "name"],
-            },
-            keywords: {
-            fields: ["label"],
-            },
-        },
-        },
     },
     });
 

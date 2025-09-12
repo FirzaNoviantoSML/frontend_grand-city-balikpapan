@@ -38,7 +38,7 @@ const Header = () => {
   return (
   <nav
     className={clsx(
-      "fixed top-0 left-0 right-0 z-50  w-[100vw] transition-all duration-300 shadow-md p-0"
+      "fixed top-0 left-0 right-0 z-50  w-full transition-all duration-300 shadow-md p-0"
     )}
   >
     {/* === DESKTOP HEADER === */}
@@ -50,6 +50,7 @@ const Header = () => {
           src="/logo-grandcitybalikpapan.png"
           alt="logo Grand City Balikpapan"
           priority
+          className="h-12 w-auto"   // <- kunci tinggi logo
         />
       </Link>
 

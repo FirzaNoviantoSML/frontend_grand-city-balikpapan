@@ -11,7 +11,6 @@ export type HomePageData = {
   thumbnail_video: Media;
   zone_image: Media;
   carousel_banner: CarouselBanner[];
-  metadata: Metadata[];
 };
 
 export type Media = {
@@ -29,15 +28,6 @@ export type CarouselBanner = {
   hero_banner_portrait: Media;
 };
 
-export type Metadata = {
-  id: number;
-  title: string;
-  title_image: string;
-  description: string;
-  image: Media;
-  keywords: Keyword[];
-};
-
 export type Keyword = {
   id: number;
   label: string;
@@ -46,5 +36,5 @@ export type Keyword = {
 // Untuk respon API secara keseluruhan
 export type ApiResponse = {
   data: HomePageData;
-  meta: Record<string, any>;
+  meta: Record<string, unknown>;
 };

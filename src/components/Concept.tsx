@@ -8,10 +8,11 @@ import {useGetConceptList} from "@/hooks/conceptList/useRoutes"
  
 type PropType = {
     language: "en" | "id"
+    isShowTitle?:boolean
 }
 
 const Concept: React.FC<PropType> = (props) => {
-    const {language} = props
+    const {language,isShowTitle} = props
 
     const {conceptData,isLoading} = useGetConceptList(language)
 
@@ -25,6 +26,8 @@ const Concept: React.FC<PropType> = (props) => {
 
   return (
     <div>
+        {
+            isShowTitle &&
         <div className="relative h-[15vh] md:h-[20vh] bg-[#C5C1A5]">
             <div className="md:w-[600px] h-[20vh]">
                 <Image
@@ -43,11 +46,12 @@ const Concept: React.FC<PropType> = (props) => {
             </div>
             </div>
             </div>
+        }
         <div className="hidden md:flex justify-center">
             {
                 conceptData!.map((item,index) => {
                     return(
-                        <div className="relative w-full bg-[#FFFCDF]"
+                        <div className="relative w-full bg-[#FFFCDF] h-76"
                         key={index}>
                         <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-[#D7D4BC] to-transparent"></div>
                         <div className="relative z-10 p-4">
@@ -83,6 +87,7 @@ const Concept: React.FC<PropType> = (props) => {
         <div className="md:hidden block">
             <EmblaCarousel slides={conceptData!} language={language}/>
         </div>
+        
         
         </div>
   )

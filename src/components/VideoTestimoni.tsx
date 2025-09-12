@@ -30,9 +30,17 @@ const VideoTestimoni:React.FC<PropType> = (props) => {
             height={600}
             />
         </div>
+        <div>
+            <div className="relative md:flex md:justify-center md:gap-24 pt-24">
+                        <div className="text-3xl  md:w-[20%] font-extralight w-[65%] mb-4 md:mb-0 text-gray-800">
+                            {homePageData.title}
+                        </div>
+                        <div className="md:w-[44%] text-lg font-extralight text-gray-800">
+                            {homePageData.description}
+                        </div>
+                    </div>
+        </div>
     <Video 
-    title={homePageData.title} 
-    description={homePageData.description} 
     thumbnail_video={homePageData.thumbnail_video.url} 
     thumbnail_video_name={homePageData.thumbnail_video.name}
     url_video={homePageData.link_video}

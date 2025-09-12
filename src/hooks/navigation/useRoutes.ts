@@ -11,8 +11,6 @@ export const useRoutes = () => {
 
   const handleToggleDropdown = useCallback((key: string) => {
     setActiveDropdown((prev) => (prev === key ? null : key));
-    console.log("ini key",key)
-    console.log("di use routes",activeDropdown)
   }, []);
 
   // Tutup dropdown jika klik di luar
@@ -29,8 +27,8 @@ export const useRoutes = () => {
   const routes = useMemo(() => [
     {
       label: language === "en" ? "About Us" : "Tentang Kami",
-      href: "/about",
-      active: pathname.startsWith("/about"),
+      href: "/about-us",
+      active: pathname.startsWith("/about-us"),
     },
     {
       label: language === "en" ? "Concept" : "Konsep",

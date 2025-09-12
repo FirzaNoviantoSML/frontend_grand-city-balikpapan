@@ -1,8 +1,11 @@
 import React from 'react'
+import ConceptIndex from './component/ConceptIndex'
 
 const page = () => {
   return (
-    <div className='mt-48'>HALAMAN CONCEPT</div>
+    <div>
+      <ConceptIndex/>
+    </div>
   )
 }
 

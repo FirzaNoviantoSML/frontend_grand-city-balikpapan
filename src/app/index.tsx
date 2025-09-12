@@ -29,7 +29,7 @@ const HomeIndex = () => {
     <div>
         <EmblaCarousel slides={homePage!.carousel_banner}/>
         <VideoTestimoni homePageData={homePage!} language={language}/>
-        <Concept language={language}/>
+        <Concept language={language} isShowTitle={true}/>
         <BannerHome hero_banner={homePage?.zone_image.url} language={language}/>
         <ResidentialHome language={language}/>
         <CommercialHome language={language}/>
