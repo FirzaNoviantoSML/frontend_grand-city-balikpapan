@@ -51,7 +51,7 @@ const Concept: React.FC<PropType> = (props) => {
             {
                 conceptData!.map((item,index) => {
                     return(
-                        <div className="relative w-full bg-[#FFFCDF] xl:h-[500px]"
+                        <div className="relative w-full bg-[#FFFCDF] lg:h-[400px]"
                         key={index}>
                         <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-[#D7D4BC] to-transparent"></div>
                         <div className="relative z-10 px-8 py-8">

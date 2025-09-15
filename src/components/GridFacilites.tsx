@@ -15,12 +15,12 @@ const GridFacilites: React.FC<PropType> = (props) => {
     
 
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid grid-cols-3 md:px-8 lg:px-0 bg-[#7C7B5A]">
         {
             facilites.map((facility,index) => {
                 return(
                     <div
-                    className= {`w-[300px] h-[400px] ${index % 2 === 0 ?"bg-[#CFCCB0]":"bg-[#C4C1A4]"}`}
+                    className= {`md:w-[28vw] lg:w-[20vw] h-[400px] ${index % 2 === 0 ?"bg-[#CFCCB0]":"bg-[#C4C1A4]"}`}
                     key={index}>
                         <div className="relative w-full h-[80%]">
                         <Image

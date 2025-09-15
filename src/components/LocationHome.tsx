@@ -21,7 +21,7 @@ const LocationHome: React.FC<PropType> = (props) => {
     <div>
         <div>
             <div className="flex justify-center relative">
-                <div className="w-full md:h-[25vh] h-[18vh]">
+                <div className="w-full h-[18vh] md:h-[20vh] lg:h-[25vh]  ">
                                 <Image
                 src="/background/bglocation.jpg"
                 alt="location"
@@ -29,7 +29,7 @@ const LocationHome: React.FC<PropType> = (props) => {
                 className="object-cover"
                 />
                 </div>
-                <div className="text-center absolute top-1/6 md:top-1/4 md:w-[20%] w-[60%] ">
+                <div className="text-center absolute top-1/6 md:top-1/4 w-[60%] md:w-[30%] lg:w-[20%]  ">
                     <div>
                     <p className="text-2xl md:text-3xl text-[#834520] md:mb-4">
                         Our Location

@@ -36,14 +36,14 @@ const GridNews: React.FC<PropType> = (props) => {
                     className="rounded-2xl shadow-md"
                     />
 
-                    <p className="font-light text-sm text-gray-500 mt-6">
+                    <p className="font-light text-xs text-gray-500 mt-3 mb-2">
                         {new Date(item.date).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
                     })}
                     </p>
-                    <p className="text-xl font-bold text-[#834520]">
+                    <p className="md:text-sm text-xl font-bold text-[#834520]">
                         {item.title}
                     </p>
                     <p className="absolute bottom-0 left-0 font-bold flex justify-start items-center text-[#834520]">

@@ -39,7 +39,7 @@ const ResidentialHome: React.FC<PropType> = (props) => {
             <p className="text-[#834520] text-md md:text-2xl font-bold border-b-3 inline-block ">
                 Residential
             </p>
-            <p className="text-[#834520] text-md md:text-2xl font-light my-2">
+            <p className="text-[#834520] text-md md:text-2xl mt-2 my-8 font-extralight ">
                 Find the Dream Residence
             </p>
             </div>

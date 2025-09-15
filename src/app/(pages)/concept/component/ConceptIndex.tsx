@@ -41,23 +41,23 @@ const ConceptIndex = () => {
                 alt={conceptPageData?.hero_banner.name || "Facility Hero Banner"}
                 width={1440}
                 height={450}
-                className="object-cover w-full  h-[480px] brightness-75"
+                className="object-cover w-full  lg:h-[480px] brightness-75"
                 />
             }
             <div className="absolute bottom-16 md:inset-y-1/3  left-4 md:inset-x-1/12 text-white">
              <div className="flex justify-start items-center">
                 <div className="flex items-center space-x-2 mb-4">
-                <Link href="/" className="text-sm md:text-xl">
+                <Link href="/" className="text-xs md:text-sm">
                     {language === "en" ? "Home" : "Beranda"}
                 </Link>
-                <MdKeyboardDoubleArrowRight className="text-lg md:text-2xl" />
-                <Link href="/concept" className="text-sm md:text-xl">
+                <MdKeyboardDoubleArrowRight className="text-xs md:text-sm" />
+                <Link href="/concept" className="text-xs md:text-sm">
                     {language === "en" ? "Concept" : "Konsep"}
                 </Link>
                 </div>
 
                 </div>
-               <p className='font-extrabold text-2xl md:text-5xl lg:w-[35%] w-[60%] '>
+               <p className='font-extrabold text-2xl md:text-3xl lg:text-5xl md:w-[40%] lg:w-[35%] w-[60%] '>
                     {conceptPageData?.title}
                 </p>
             </div>
@@ -73,12 +73,12 @@ const ConceptIndex = () => {
                 className="object-contain origin-center -scale-x-100 object-top"
                 />
                 </div>
-                <div className="absolute top-88 px-4 text-green-900">
+                <div className="absolute top-88 px-4 text-green-900  md:bg-red-900 md:top-88">
             {conceptPageData?.description}
         </div>
                  </div>
         :
-        <div className="bg-[#C5C1A5] flex justify-end">
+        <div className="bg-[#C5C1A5] flex justify-end relative">
              <div className="relative h-60 overflow-hidden w-[40vw]">
                 <Image
                 src="/background/bgleaf.jpg"
@@ -89,7 +89,7 @@ const ConceptIndex = () => {
                 priority
                 />
         </div>
-        <div className="absolute lg:bottom-24 lg:w-[50vw] lg:left-1/8 text-green-900 md:w-auto md:bottom-86 md:left-0 md:px-12">
+        <div className="absolute lg:bottom-24 lg:w-[50vw] lg:left-1/8 text-green-900 md:w-auto md:top-12 md:left-0 md:px-12">
             {conceptPageData?.description}
         </div>
         </div>
@@ -136,7 +136,7 @@ const ConceptIndex = () => {
                                 alt="Full View"
                                 width={800}
                                 height={800}
-                                className=" shadow-lg h-[95vh]"
+                                className=" shadow-lg lg:h-[95vh] md:h-[80vh]"
                                 />
                                 )
                                 

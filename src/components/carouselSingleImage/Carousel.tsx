@@ -7,6 +7,7 @@ import Image from 'next/image'
 import {useState,useEffect} from 'react'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import {Development} from "@/types/developmentListTypes"
+import {useIsMobile} from "@/libs/useIsMobile"
 
 
 type PropType = {
@@ -18,7 +19,7 @@ type PropType = {
 const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
-
+    const isMobile = useIsMobile()
     const { slides } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
 
@@ -49,9 +50,9 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                     {slides.map((item, idx) => (
                         <div
                             key={idx}
-                            className="embla__slide flex-[0_0_calc(90%)] h-[55vh] md:h-[50vh] rounded-xl shadow-md bg-white md:flex justify-start"
+                            className="embla__slide flex-[0_0_calc(90%)] h-[50vh] lg:h-[50vh] md:h-[30vh] md:flex-[0_0_calc(100%)] rounded-xl lg:flex-[0_0_calc(95%)] shadow-md bg-white md:flex justify-start"
                         > 
-                            <div className="hidden md:block relative w-3/5 h-[100%] z-10">
+                            <div className="hidden md:block relative lg:w-3/5 md:w-3/6 h-[100%] z-10">
                                 <Image
                             src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.thumbnail_image.url}`}
                             alt={item.thumbnail_image.name}
@@ -65,16 +66,17 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                             className="absolute h-[100%] right-0 bottom-0  z-20 object-center"
                             />
                             </div>
-                            <div className="hidden pl-6 pr-2 w-[40%] md:flex justify-between flex-col h-[100%] pb-6">
+                            <div className="hidden pl-6 pr-4 w-[40%] md:flex justify-between flex-col h-[100%] pb-6">
                                 <div className="mt-6 ">
+                                   <div className="flex justify-start md:justify-start  mt-2">
                                     <Image
-                                src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.logo.url}`}
-                                alt={item.logo.name}
-                                width={150}
-                                height={50}
-                                className='items-center w-96 h-32 mb-4'
-                                />
-                                <div className="text-gray-800">
+                                    alt={item.logo.name}
+                                    src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.logo.url}`}
+                                    width={isMobile?260:350}
+                                    height={isMobile?260:350}
+                                    />
+                                </div>
+                                <div className="text-gray-800 font-extralight text-sm lg:text-lg">
                                     {item.thumbnail_description}
                                 </div>
                                 </div>

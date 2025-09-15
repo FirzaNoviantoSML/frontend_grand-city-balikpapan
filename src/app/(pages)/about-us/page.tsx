@@ -1,10 +1,9 @@
 import React from 'react'
 
-import {getMetadata} from '@/api/metadata/getMetadata'
 import AboutPage from './component/AboutPage'
+import {getMetadata} from '@/api/metadata/getMetadata'
 import {MetadataData} from "@/types/MetadataType"
-import type {Metadata} from "next"
-import type {Viewport} from 'next'
+import type {Metadata,Viewport} from "next"
 
 export const viewport: Viewport = {
   themeColor: '#ffffff'
