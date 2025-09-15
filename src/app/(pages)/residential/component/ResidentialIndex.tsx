@@ -58,12 +58,12 @@ const ResidentialIndex = () => {
           </p>
         </div>
       </div>
-      <div className="flex justify-center py-12">
-        <div className="grid grid-cols-1">
+      <div className="flex justify-center py-12 px-8 lg:px-56">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
                             {developmentData && developmentData.map((item, idx) => (
                                 <div
                                     key={idx}
-                                    className="relative w-[80vw] h-[40vh] md:h-[50vh] lg:h-[60vh] rounded-xl shadow-2xl bg-white"
+                                    className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh] rounded-xl shadow-2xl bg-white"
                                 >
                                     <div className="relative w-full h-[50%]">
                                         <Image
