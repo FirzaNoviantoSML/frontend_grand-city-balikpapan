@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useGetResidentialPage } from "@/hooks/ResidentialPage/useResidentialPage";
+import {useGetCommercialPage} from "@/hooks/commercialPage/useGetCommercialPage";
 import { useLanguage } from "@/contex/LanguageContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,11 +9,11 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import {useGetDevelopmentThumbnailList} from '@/hooks/development/useRoutes'
 import { IoChevronForwardSharp } from "react-icons/io5";
 
-const ResidentialIndex = () => {
+const CommercialIndex = () => {
   const isMobile = useIsMobile();
   const { language } = useLanguage();
-  const { ResidentialPageData, isLoading } = useGetResidentialPage(language);
-    const {developmentData,isLoading:developmentLoading} = useGetDevelopmentThumbnailList(language,"Residential")
+  const { CommercialPageData, isLoading } = useGetCommercialPage(language);
+  const {developmentData,isLoading:developmentLoading} = useGetDevelopmentThumbnailList(language,"Commercial")
 
   if (isLoading || developmentLoading) {
     return <div>
@@ -26,16 +26,16 @@ const ResidentialIndex = () => {
       <div className="relative">
         {isMobile ? (
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${ResidentialPageData?.hero_banner?.url}`}
-            alt={ResidentialPageData?.hero_banner?.name || "Facility Hero Banner"}
+            src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${CommercialPageData?.hero_banner?.url}`}
+            alt={CommercialPageData?.hero_banner?.name || "Commercial Hero Banner"}
             width={1440}
             height={450}
             className="object-cover w-full  h-[220px] brightness-75"
           />
         ) : (
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${ResidentialPageData?.hero_banner?.url}`}
-            alt={ResidentialPageData?.hero_banner?.name || "Facility Hero Banner"}
+            src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${CommercialPageData?.hero_banner?.url}`}
+            alt={CommercialPageData?.hero_banner?.name || "Commercial Hero Banner"}
             width={1440}
             height={450}
             className="object-cover w-full  lg:h-[480px] brightness-75"
@@ -48,13 +48,13 @@ const ResidentialIndex = () => {
                 {language === "en" ? "Home" : "Beranda"}
               </Link>
               <MdKeyboardDoubleArrowRight className="text-xs md:text-sm" />
-              <Link href="/concept" className="text-xs md:text-sm">
-                {language === "en" ? "Residential" : "Residential"}
+              <Link href="/commercial" className="text-xs md:text-sm">
+                {language === "en" ? "Commercial" : "Commercial"}
               </Link>
             </div>
           </div>
           <p className="font-extrabold text-2xl md:text-3xl lg:text-5xl md:w-[40%] lg:w-[35%] w-[100%]">
-            Residential
+            Commercial
           </p>
         </div>
       </div>
@@ -62,12 +62,12 @@ const ResidentialIndex = () => {
       <div className="text-sm w-[85vw] md:w-[75vw] lg:w-[50vw] md:p-10 bg-[#BEBE9C] p-6 z-10 -top-12 absolute flex justify-start lg:justify-end"
       style={{color:"#515D33"}}>
         <div className="w-full lg:w-[75%] text-sm lg:text-md">
-        {ResidentialPageData?.description}
+        {CommercialPageData?.description}
         </div>
       </div> 
       </div>
-        <div className="flex justify-center py-12 px-8 md:px-20 lg:px-56 mt-28 lg:flex-wrap ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className={`flex justify-center py-12 px-8 md:px-20 lg:px-56 mt-28 lg:flex-wrap ${developmentData!.length <=2 ?"lg:px-96":"lg:px-56"}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 ${developmentData!.length <=2 ?"lg:grid-cols-2":"lg:grid-cols-3"} gap-10`}>
             {developmentData && developmentData.map((item, idx) => {
             const n = developmentData.length
             const isLast = idx === n - 1
@@ -117,4 +117,4 @@ const ResidentialIndex = () => {
   );
 };
 
-export default ResidentialIndex;
+export default CommercialIndex;

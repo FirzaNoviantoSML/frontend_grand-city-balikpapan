@@ -1,16 +1,15 @@
 import React from 'react'
 import {getMetadata} from '@/api/metadata/getMetadata'
 import {MetadataData} from "@/types/MetadataType"
-import type {Metadata} from "next"
-import type {Viewport} from 'next'
-import CommercialIndex from './component/CommercialIndex'
+import type {Metadata,Viewport} from "next"
+import ContactIndex from './component/ContactIndex'
 
 export const viewport: Viewport = {
   themeColor: '#ffffff'
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data:MetadataData = await getMetadata("commercial-page")
+  const data:MetadataData = await getMetadata("contact-us-page")
   const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
 
   const logoUrl = `/Logo_grandcitybalikpapan.png`;
@@ -31,10 +30,10 @@ export async function generateMetadata(): Promise<Metadata> {
     }
   };
 
-  const title = data?.title || "Commercial | Grand City Balikpapan";
+  const title = data.title ||  "Contact Us | Grand City Balikpapan";
   const description = data?.description || "Selamat datang di Grand City Balikpapan";
   const url = `${process.env.NEXT_PUBLIC_SITE_URL}`;
-  const ogImage =   data?.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} ${data.image?.url}` : logoUrl ;
+  const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} ${data.image?.url}` : logoUrl ;
   return {
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
     title,
@@ -78,12 +77,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const Residential = () => {
+const ContactPage = () => {
   return (
     <div>
-        <CommercialIndex/>
+      <ContactIndex/>
     </div>
   )
 }
 
-export default Residential
+export default ContactPage
