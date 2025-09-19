@@ -32,6 +32,9 @@ const Input: React.FC<InputProps> = ({
             }
             {as === "select" ? (
                 <Field name={name} as="select" id={id} className={className}>
+                    <option className='rounded-none' value="">
+                        Select cluster
+                    </option>
                     {options.map((option, index) => (
                         <option className='rounded-none' key={index} value={option.value}>
                             {option.label}

@@ -6,6 +6,9 @@ type DevelopmentDropdownType = {
     id:string,
     documentId:string,
     title:string,
+    project_code:string,
+    cluster_code:string;
+    slug:string;
 }
 
 export const useGetDevelopmentDropdown = (lang: "en" | "id") => {

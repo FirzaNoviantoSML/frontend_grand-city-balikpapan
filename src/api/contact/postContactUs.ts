@@ -4,14 +4,13 @@ export interface IPayload {
   fullname: string;
   email: string;
   mobile: string;
-  project_code: string;
-  project_name: string;
-  cluster_code: string;
-  lead_source: string;
+  project_code?: string | undefined;
+  project_name?: string | undefined;
+  cluster_code?: string | undefined;
+  lead_source?: string | undefined;
   web: string;
-  utm: string;
+  utm?: string | undefined;
   message:string
-  projectId:string
 }
 
 
@@ -24,18 +23,16 @@ export async function postContact(payload: IPayload) {
     project_name,
     cluster_code,
     message,
-    projectId,
     lead_source,
     web,
     utm,
-    
   } = payload;
   try {
-    const response = await axiosInstance.post("/message", {
+    const response = await axiosInstance.post("/messages", {
       data: {
         fullname,
         email,
-        mobile,
+        phone:mobile,
         project_code,
         project_name,
         cluster_code,
@@ -43,7 +40,6 @@ export async function postContact(payload: IPayload) {
         web,
         utm,
         message,
-        projectId,
       },
     });
 

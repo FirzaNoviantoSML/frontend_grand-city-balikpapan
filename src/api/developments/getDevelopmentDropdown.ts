@@ -5,7 +5,7 @@ export const getDevelopmentDropdown = async (lang: "en" | "id") => {
   try {
     const query = qs.stringify({
   locale: lang,
-  fields:["id","title"]
+  fields:["id","title","project_code","cluster_code","slug"]
 });
     const response = await axiosInstance.get(`/developments?${query}`);
     return response.data.data;

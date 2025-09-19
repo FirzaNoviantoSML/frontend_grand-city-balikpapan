@@ -1,6 +1,5 @@
 import * as yup from "yup";
 const contactUsSchema = yup.object().shape({
-  mailTo: yup.string().required(),
   email: yup
     .string()
     .required("Please input your email")
@@ -12,15 +11,13 @@ const contactUsSchema = yup.object().shape({
     .min(8)
     .required("A phone number is required"),
   message: yup.string().required("Please input your message"),
+   lead_source: yup.string().notRequired(),
+  web: yup.string().notRequired(),
+  utm: yup.string().notRequired(),
+  project_code: yup.string().notRequired(),
+  project_name: yup.string().required("Please select cluster"),
+  cluster_code: yup.string().notRequired(),
 });
 
-const infoSchema = yup.object().shape({
-  fullname: yup.string().required("Please input your name"),
-  email: yup
-    .string()
-    .required("Please input your email")
-    .email("Invalid email format"),
-  mobile: yup.string().required("Please input your phone number"),
-});
 
-export { contactUsSchema, infoSchema };
+export { contactUsSchema };
