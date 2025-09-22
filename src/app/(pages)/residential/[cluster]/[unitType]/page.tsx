@@ -3,7 +3,7 @@ import {getMetadata} from '@/api/metadata/getMetadata'
 import {MetadataData} from "@/types/MetadataType"
 import type {Metadata} from "next"
 import type {Viewport} from 'next'
-import ResidentialIndex from './component/ResidentialIndex'
+import UnitTypeDetailIndex from './components/UnitTypeDetailIndex'
 
 export const viewport: Viewport = {
   themeColor: '#ffffff'
@@ -13,10 +13,10 @@ export async function generateMetadata({
     params,
 
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ unitType: string }>;
 }): Promise<Metadata> {
-const { slug } = await params;
-const data:MetadataData = await getMetadata("developments",slug)
+const { unitType } = await params;
+const data:MetadataData = await getMetadata("unit-types",unitType)
 const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
 
 const logoUrl = `/Logo_grandcitybalikpapan.png`;
@@ -84,15 +84,14 @@ const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} $
   };
 }
 
-
-
-const Clusterpage = async ({ params }: {params:Promise<{ slug:string}>}) => {
-  const {slug} = await params
+const unitTypePage = async ({ params }: {params:Promise<{ unitType:string}>}) => {
+      const getParams = async () => params;
+  const { unitType } = await getParams();
   return (
     <div>
-      <ResidentialIndex slug={slug} />
+      <UnitTypeDetailIndex slug={unitType}/>
     </div>
   )
 }
 
-export default Clusterpage
+export default unitTypePage

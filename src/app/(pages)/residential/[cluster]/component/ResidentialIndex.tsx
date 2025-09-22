@@ -153,9 +153,9 @@ const ResidentialIndex = ({ slug }: { slug: string }) => {
           className="cursor-pointer group block"
 >
         <div
-          className="w-[350px] md:w-[330px] lg:w-[400px] max-w-sm h-[45vh] md:h-[40vh] lg:h-[50vh] rounded-xl shadow-2xl bg-white m-6 cursor-pointer"
+          className="w-[350px] md:w-[330px] lg:w-[400px] max-w-sm h-[45vh] md:h-[40vh] lg:h-[55vh] rounded-xl shadow-2xl bg-white m-6 cursor-pointer"
         >
-          <div className="relative w-full h-[60%]">
+          <div className="relative w-full h-[65%]">
             <Image
               src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.thumbnail_image.url}`}
               alt={item.thumbnail_image.name}
@@ -169,7 +169,7 @@ const ResidentialIndex = ({ slug }: { slug: string }) => {
   </div>
           </div>
 
-          <div className="flex justify-between flex-col h-[37%]">
+          <div className="flex justify-between flex-col h-[33%]">
             <div className="px-4">
               <div className="flex justify-center mt-2 font-bold text-xl">{item.type}</div>
               <div className="py-3 text-gray-900 text-md text-center">

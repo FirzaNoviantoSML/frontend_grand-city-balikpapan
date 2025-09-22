@@ -14,8 +14,12 @@ import HeaderMobileView from "./HeaderMobileView";
 import {useLanguage} from "@/contex/LanguageContext"
 import {useGetConceptList} from "@/hooks/conceptList/useRoutes"
 import {useGetDevelopmentTypeThumbnailList} from "@/hooks/developmentsList/useRoutes"
+import { usePathname } from "next/navigation";
+import { BiSolidChevronLeft } from "react-icons/bi";
 
 const Header = () => {
+  const url = usePathname()
+  const urlIndex = url.split("/")
   const { routes,handleToggleDropdown,activeDropdown } = useRoutes();
   const [query, setQuery ]  = useState("");
   const [isActiveMenuMobile, setisActiveMenuMobile] = useState<boolean>(false);
@@ -34,6 +38,20 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if((urlIndex[1] === "residential" || "commercial") && (urlIndex.length === 4)){
+    return (
+      <div className="bg-[#C4C1A4] h-11 text-white text-sm fixed top-0 left-0 right-0 z-50 w-full">
+        <Link href={`/residential/${urlIndex[2]}`}
+        className="block leading-[44px] px-3">
+        <BiSolidChevronLeft 
+        className="inline align-middle mr-1"/>
+         <span className="inline align-middle">
+      {`Back To ${urlIndex[2]}`}
+    </span>
+        </Link>
+      </div>
+    )
+  }
   
   return (
   <nav
@@ -113,9 +131,11 @@ const Header = () => {
                             src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.icon.url}`}
                             height={100}
                             width={100}
-                            className="mb-4"
+                            className="mb-4 hover:scale-110 duration-300  transition-transform"
                           />
-                          <p style={{ color: item.color }}>{item.title}</p>
+                          <p style={{ color: item.color }}
+                          className="hover:text-red-500"
+                        >{item.title}</p>
                         </Link>
                       ))}
                     </div>
@@ -135,14 +155,15 @@ const Header = () => {
                 {route.label === "Developments" && (
                   <div className="flex justify-center gap-12">
                     {developmentTypeData?.map((item, index) => (
-                      <Link key={index} href="#">
+                      <Link key={index} href={`/${item.slug}`}
+                      onClick={route.onClick}>
                         <div className="text-neutral-500 hover:text-orange-500 text-center text-xl font-semibold">
                           <Image
                             src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.thumbnail.url}`}
                             alt={item.thumbnail.name}
-                            width={600}
+                            width={300}
                             height={300}
-                            className="w-[350px] h-[200px] rounded-2xl"
+                            className="w-[350px] h-[200px] rounded-2xl object-cover object-bottom hover:brightness-90 duration-500 transition-normal"
                           />
                           {item.title}
                         </div>

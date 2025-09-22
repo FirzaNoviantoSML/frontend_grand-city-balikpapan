@@ -49,6 +49,7 @@ if(isLoading){
             className="pointer-events-none"/>
 
         </div>
+        
         <div className="absolute z-0 left-0 md:top-150  lg:bottom-0 top-150 pointer-events-none">
             <Image
             src="/background/bgleaft-invert.png"

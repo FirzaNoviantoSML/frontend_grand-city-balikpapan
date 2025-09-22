@@ -16,8 +16,8 @@ export const getDevelopmentTypeThumbnailList = async (lang: "en" | "id") => {
 
 
     const developmentData = [{
-      title:"Development",
-      slug:"development",
+      title:"Residential",
+      slug:"residential",
       thumbnail:{
         url: responseResidential.data.data.thumbnail.url,
         name:responseResidential.data.data.thumbnail.name
