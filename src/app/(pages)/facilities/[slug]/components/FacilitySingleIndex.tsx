@@ -59,32 +59,36 @@ if(isLoading){
                 className="object-cover w-full  h-[450px] brightness-75"
                 />
             }
-            <div className="absolute bottom-16 md:inset-y-1/2  left-4 md:inset-x-1/12 text-white">
-           <div className="flex justify-start items-center">
-                <div className="flex items-center space-x-2 mb-4">
-                <Link href="/" className="text-sm md:text-xl">
-                    {language === "en" ? "Home" : "Beranda"}
-                </Link>
-                <MdKeyboardDoubleArrowRight className="text-lg md:text-2xl" />
-                <Link href="/facility" className="text-sm md:text-xl">
-                    {language === "en" ? "Facility" : "Fasilitas"}
-                </Link>
-                </div>
-
-                </div>
-                <p className='font-extrabold text-2xl md:text-5xl'>
-                    {facilityDetailData?.title}
-                </p>
+                 <div className="absolute bottom-16 md:inset-y-1/3  left-4 md:inset-x-1/12 text-white">
+          <div className="flex justify-start items-center">
+            <div className="flex items-center space-x-2 mb-4">
+              <Link href="/" className="text-xs md:text-sm">
+                {language === "en" ? "Home" : "Beranda"}
+              </Link>
+              <MdKeyboardDoubleArrowRight className="text-xs md:text-sm" />
+              <Link href="/facility" className="text-xs md:text-sm">
+                {language === "en" ? "Facility" : "Fasilitas"}
+              </Link>
             </div>
+          </div>
+          <p className="font-extrabold text-2xl md:text-3xl lg:text-5xl md:w-[40%] lg:w-[35%] w-[100%]">
+            {facilityDetailData?.title}
+          </p>
+        </div>
         </div>
 
         <div className="relative z-10">
-                    <div className="mb-8 px-4 mt-12 min-h-48">
+            <div className="flex justify-center">
+                    <div>
+                            <div className="mb-8 px-4 mt-12 min-h-48 w-[70vw] md:text-lg">
             {facilityDetailData?.description}
         </div>
         <div className="my-12">
             <FacilityGallery gallery={facilityDetailData?.gallery} language={language} title={facilityDetailData?.title}/>
         </div>
+                        </div>
+            </div>
+
             <OtherFacilities slug={slug}/>
         </div>
     </div>

@@ -24,8 +24,10 @@ const {gallery,language,title} = props
         </div>
         {
             gallery && (
-                <div className="mt-4">
+                <div className="flex justify-center">
+                                    <div className="mt-4 w-[80vw]">
                     <Carousel slides={gallery}/>
+                </div>
                 </div>
             )
         }

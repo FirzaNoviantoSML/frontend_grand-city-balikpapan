@@ -3,7 +3,6 @@ import { EmblaOptionsType } from 'embla-carousel'
 import { PrevButton, NextButton, usePrevNextButtons } from './carouselArrow'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
-import { IoChevronForwardSharp } from "react-icons/io5";
 import {Facilities} from '@/types/facilitiesListTypes'
 
 

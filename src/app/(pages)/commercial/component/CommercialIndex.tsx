@@ -75,7 +75,8 @@ const CommercialIndex = () => {
             const centerSingleOnLg = n % 3 === 1 && isLast && round  ? "lg:col-start-2" : ""
 
             return (
-                <div
+                <Link
+                href={`/commercial/${item.slug}`}
                 key={idx}
                 className={`relative w-full h-[45vh] md:h-[40vh] lg:h-[60vh] rounded-xl shadow-2xl bg-white ${centerSingleOnLg}`}
                 >
@@ -108,7 +109,7 @@ const CommercialIndex = () => {
                     <IoChevronForwardSharp className="font-bold" />
                     </div>
                 </div>
-                </div>
+                </Link>
             )
             })}
         </div>

@@ -5,6 +5,7 @@ import {useGetFacilityPage} from "@/hooks/facilityPage/useRoutes"
 import {useLanguage} from "@/contex/LanguageContext"
 import {useIsMobile} from "@/libs/useIsMobile"
 import FacilityList from './FacilityList'
+import Link from 'next/link'
 
 const FacilityIndex = () => {
     
@@ -59,19 +60,23 @@ const FacilityIndex = () => {
                 className="object-cover w-full  h-[450px] brightness-75"
                 />
             }
-            <div className="absolute bottom-16 md:inset-y-1/2  left-4 md:inset-x-1/12 text-white">
-                <p className="text-sm md:text-xl mb-4">
-                    {language === "en" ? "Home":"Beranda"}
-                </p>
-                <p className='font-extrabold text-2xl md:text-5xl'>
-                    {language === "en" ? "Facilities":"Fasilitas"}
-                </p>
+        <div className="absolute bottom-16 md:inset-y-1/3  left-4 md:inset-x-1/12 text-white">
+          <div className="flex justify-start items-center">
+            <div className="flex items-center space-x-2 mb-4">
+              <Link href="/" className="text-xs md:text-sm">
+                {language === "en" ? "Home" : "Beranda"}
+              </Link>
             </div>
+          </div>
+          <p className="font-extrabold text-2xl md:text-3xl lg:text-5xl md:w-[40%] lg:w-[35%] w-[100%]">
+            Facilities
+          </p>
+        </div>
         </div>
         <div 
         className="relative pt-6 pb-8 pl-2 w-[80vw] md:w-[50vw] -mt-11 z-10 flex justify-end text-sm md:text-lg"
         style={{ backgroundColor: "#BEBE9C" }}>
-            <div className="w=[100%] md:w-[70%]">
+            <div className="w-[100%] md:w-[70%]">
                 {facilityPageData?.description}
             </div>
         </div>

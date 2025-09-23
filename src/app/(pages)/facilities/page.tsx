@@ -10,7 +10,7 @@ export const viewport: Viewport = {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data:MetadataData = await getMetadata("facility-pages")
+  const data:MetadataData = await getMetadata("facility-page")
   const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
 
   const logoUrl = `/Logo_grandcitybalikpapan.png`;

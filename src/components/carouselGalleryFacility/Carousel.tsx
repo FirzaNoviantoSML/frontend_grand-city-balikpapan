@@ -69,11 +69,11 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
         <div>
         <section className="relative">
             <div ref={emblaRef} className="embla overflow-hidden ">
-                <div className="embla__container flex touch-pan-y gap-2 md:gap-12  px-12 mb-6">
+                <div className="embla__container flex touch-pan-y gap-2  mb-6">
                     {slides.map((item, idx:number) => (
                         <div
                             key={idx}
-                            className="relative embla__slide flex-[0_0_calc(100%)] md:flex-[0_0_calc(42%-1rem)] h-44 xl:h-72 rounded-xl shadow-md bg-white cursor-pointer"
+                            className="relative embla__slide flex-[0_0_calc(100%)] md:flex-[0_0_calc(51%-1rem)] h-44 xl:h-72 rounded-xl shadow-md bg-white cursor-pointer"
                             onClick={() => { setIsOpen(true); setImageData({image:item.url,index:idx}); }}
                         >
                             <div className="relative w-full h-full"
@@ -82,7 +82,7 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                                 src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.url}`}
                                 alt={item.name}
                                 fill
-                                className="object-cover object-center "
+                                className="object-cover object-center rounded-xl"
                                 
                             />
                             </div>

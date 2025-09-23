@@ -78,26 +78,25 @@ if(isLoading){
                 className="object-cover w-full  h-[450px] brightness-75"
                 />
             }
-            <div className="absolute bottom-16 md:inset-y-1/2  left-4 md:inset-x-1/12 text-white">
-           <div className="flex justify-start items-center">
-                <div className="flex items-center space-x-2 mb-4">
-                <Link href="/" className="text-sm md:text-xl">
-                    {language === "en" ? "Home" : "Beranda"}
-                </Link>
-                </div>
-
-                </div>
-               <p className='font-extrabold text-2xl md:text-5xl'>
-                    {language === "en"? "About Us":"Tentang Kami"}
-                </p>
+                  <div className="absolute bottom-16 md:inset-y-1/3  left-4 md:inset-x-1/12 text-white">
+          <div className="flex justify-start items-center">
+            <div className="flex items-center space-x-2 mb-4">
+              <Link href="/" className="text-xs md:text-sm">
+                {language === "en" ? "Home" : "Beranda"}
+              </Link>
             </div>
+          </div>
+          <p className="font-extrabold text-2xl md:text-3xl lg:text-5xl md:w-[40%] lg:w-[35%] w-[100%]">
+            {language === "en"? "About Us":"Tentang Kami"}
+          </p>
+        </div>
             
 
         </div>
 
         <div className="relative z-10">
            
-        <div className="mb-8 px-4 mt-12 min-h-48 lg:pl-96 font-extralight lg:w-[80%] lg:text-xl">
+        <div className="mb-8 px-4 mt-12 min-h-48 lg:pl-96 font-extralight lg:w-[80%] lg:text-md">
             {aboutPageData?.description}
         </div>
             <Video thumbnail_video={aboutPageData!.thumbnail_video.url} thumbnail_video_name={aboutPageData!.thumbnail_video.name} url_video={aboutPageData!.link_video}  />

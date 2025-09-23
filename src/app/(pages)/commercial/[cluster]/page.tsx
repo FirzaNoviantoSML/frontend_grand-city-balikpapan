@@ -1,21 +1,27 @@
 import React from 'react'
-import HomeIndex from '.'
 import {getMetadata} from '@/api/metadata/getMetadata'
 import {MetadataData} from "@/types/MetadataType"
 import type {Metadata} from "next"
 import type {Viewport} from 'next'
+import ResidentialIndex from './component/CommercialIndex'
 
 export const viewport: Viewport = {
   themeColor: '#ffffff'
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const data:MetadataData = await getMetadata("home-page")
-  const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
+export async function generateMetadata({
+    params,
 
-  const logoUrl = `/Logo_grandcitybalikpapan.png`;
+}: {
+  params: Promise<{ cluster: string }>;
+}): Promise<Metadata> {
+const { cluster } = await params;
+const data:MetadataData = await getMetadata("developments",cluster)
+const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
 
-  const jsonLd = {
+const logoUrl = `/Logo_grandcitybalikpapan.png`;
+
+const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Grand City Balikpapan",
@@ -31,10 +37,10 @@ export async function generateMetadata(): Promise<Metadata> {
     }
   };
 
-  const title = data.title ||  "Home | Grand City Balikpapan";
-  const description = data?.description || "Selamat datang di Grand City Balikpapan";
-  const url = `${process.env.NEXT_PUBLIC_SITE_URL}`;
-  const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} ${data.image?.url}` : logoUrl ;
+const title = data?.title || "Grand City Balikpapan";
+const description = data?.description || "Selamat datang di Grand City Balikpapan";
+const url = `${process.env.NEXT_PUBLIC_SITE_URL}`;
+const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} ${data.image?.url}` : logoUrl ;
   return {
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
     title,
@@ -79,14 +85,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-const page = () => {
+
+const Clusterpage = async ({ params }: {params:Promise<{ cluster:string}>}) => {
+  const {cluster} = await params
   return (
-    <div className="mt-16">
-      <HomeIndex/>
-
-
+    <div>
+      <ResidentialIndex slug={cluster} />
     </div>
   )
 }
 
-export default page
+export default Clusterpage

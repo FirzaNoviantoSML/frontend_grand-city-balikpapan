@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import EmblaCarousel from './carouselConceptlMobile/Carousel';
 import {useGetConceptList} from "@/hooks/conceptList/useRoutes"
+import Link from 'next/link';
  
 type PropType = {
     language: "en" | "id"
@@ -51,16 +52,20 @@ const Concept: React.FC<PropType> = (props) => {
             {
                 conceptData!.map((item,index) => {
                     return(
-                        <div className="relative w-full bg-[#FFFCDF] lg:h-[400px]"
+                        <Link
+                        href={`/concept/${item.slug}`}
+                        className="group relative w-full bg-[#FFFCDF] lg:h-[400px]"
                         key={index}>
                         <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-[#D7D4BC] to-transparent"></div>
                         <div className="relative z-10 px-8 py-8">
                         <div className="flex justify-center">
-                            <Image
-                        src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.icon.url}`}
-                        alt={item.icon.name}
-                        width={70}
-                        height={70}
+                        <Image
+                            src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.icon.url}`}
+                            alt={item.icon.name}
+                            width={70}
+                            height={70}
+                            className="origin-center transition-transform duration-300 ease-out transform-gpu group-hover:scale-110"
+                            draggable={false}
                         />
                         </div>
                         <p 
@@ -74,12 +79,13 @@ const Concept: React.FC<PropType> = (props) => {
                         </div>
 
                         </div>
-                        <div className="absolute left-4 bottom-2 font-bold flex justify-start items-center"
+                        <div
+                        className="cursor-pointer absolute left-4 bottom-2 font-bold flex justify-start items-center"
                         style={{ color: item.color }}>
                             See Details
                             <IoChevronForwardSharp className='font-bold' />
                         </div>
-                        </div>
+                        </Link>
                     )
                 })
             }
