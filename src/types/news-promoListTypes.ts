@@ -17,9 +17,8 @@ export type NewsItem = {
 
 // ----- Meta/pagination -----
 export type Pagination = {
-  page: number;
-  pageSize: number;
-  pageCount: number;
+  start:number,
+  limit:number,
   total: number;
 };
 

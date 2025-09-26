@@ -73,11 +73,11 @@ const HeaderMobileView: React.FC<HeaderMobileProps> = ({
           alt="logo Grand City Balikpapan"
           width={100}
           height={10}
-          className="max-w-full h-auto"
+          className="max-w-full h-5"
         />
         <button
           onClick={onClose}
-          className="bg-primary-blue p-3 rounded-full text-neutral-500 md:hidden flex"
+          className="bg-primary-blue p-3 rounded-full text-neutral-500 pr-0 md:pr-12"
         >
           <MdClose size={25} />
         </button>

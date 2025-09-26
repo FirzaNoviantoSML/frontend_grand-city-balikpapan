@@ -1,16 +1,15 @@
 import {getNewsPromoList} from "@/api/news-promo/getPromoList"
 import { useEffect, useState } from "react";
-import {NewsItem} from "@/types/news-promoListTypes"
+import {NewsResponse} from "@/types/news-promoListTypes"
 
-export const useGetNewsPromosList = (lang: "en" | "id") => {
-  const [newsPromoData, setNewsPromoData] = useState<NewsItem[]>();
+export const useGetNewsPromosList = (lang: "en" | "id",limit:number,start?:number) => {
+  const [newsPromoData, setNewsPromoData] = useState<NewsResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getNewsPromoList(lang) ;
-        console.log("hooks news",response)
+        const response = await getNewsPromoList(lang,limit,start) ;
         setNewsPromoData(response);
       } catch (error) {
         console.log("ERROR SAAT FETCH:", error);
@@ -20,7 +19,7 @@ export const useGetNewsPromosList = (lang: "en" | "id") => {
     };
 
     fetchData();
-  }, [lang]);
+  }, [lang,limit,start]);
 
   return { newsPromoData, isLoading };
 };

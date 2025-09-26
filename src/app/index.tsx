@@ -20,7 +20,7 @@ const HomeIndex = () => {
    if(isLoading){
     return(
       <div>
-        Loading
+
       </div>
     )
    }

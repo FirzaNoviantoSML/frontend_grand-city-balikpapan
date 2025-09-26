@@ -1,27 +1,20 @@
 import React from 'react'
-import ResidentialIndex from './component/CommercialIndex'
 import {getMetadata} from '@/api/metadata/getMetadata'
 import {MetadataData} from "@/types/MetadataType"
 import type {Metadata} from "next"
 import type {Viewport} from 'next'
-
+import SearchIndex from './components/SearchIndex'
 export const viewport: Viewport = {
   themeColor: '#ffffff'
 }
 
-export async function generateMetadata({
-    params,
+export async function generateMetadata(): Promise<Metadata> {
+  const data:MetadataData = await getMetadata("residential-page")
+  const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
 
-}: {
-  params: Promise<{ cluster: string }>;
-}): Promise<Metadata> {
-const { cluster } = await params;
-const data:MetadataData = await getMetadata("developments",cluster)
-const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
+  const logoUrl = `/Logo_grandcitybalikpapan.png`;
 
-const logoUrl = `/Logo_grandcitybalikpapan.png`;
-
-const jsonLd = {
+  const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Grand City Balikpapan",
@@ -37,10 +30,10 @@ const jsonLd = {
     }
   };
 
-const title = data?.title || "Grand City Balikpapan";
-const description = data?.description || "Selamat datang di Grand City Balikpapan";
-const url = `${process.env.NEXT_PUBLIC_SITE_URL}`;
-const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} ${data.image?.url}` : logoUrl ;
+  const title = data?.title || "Residential | Grand City Balikpapan";
+  const description = data?.description || "Selamat datang di Grand City Balikpapan";
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}`;
+  const ogImage =   data?.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} ${data.image?.url}` : logoUrl ;
   return {
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
     title,
@@ -84,15 +77,12 @@ const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} $
   };
 }
 
-
-
-const Clusterpage = async ({ params }: {params:Promise<{ cluster:string}>}) => {
-  const {cluster} = await params
+const Search = () => {
   return (
     <div>
-      <ResidentialIndex slug={cluster} />
+        <SearchIndex/>
     </div>
   )
 }
 
-export default Clusterpage
+export default Search

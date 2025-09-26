@@ -5,6 +5,7 @@ import {Ubuntu} from "next/font/google"
 import Header from "@/components/headers/Header";
 import {LanguageProvider} from "@/contex/LanguageContext"
 import Footer from "@/components/Footer";
+import SocialMediaBar from "@/components/SocialMediaBar";
 
 
 const ubuntu  = Ubuntu({
@@ -41,6 +42,7 @@ export default function RootLayout({
           // className="mt-16"
           >
           {children}
+          <SocialMediaBar/>
           </div>
           <Footer/>
         </LanguageProvider>

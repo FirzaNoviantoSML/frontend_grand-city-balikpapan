@@ -13,7 +13,6 @@ const FacilitiesHome: React.FC<PropType> = (props) => {
 
   const {language} = props
   const {facilitesData,isLoading} = useGetFacilites(language)
-  console.log("page facility",facilitesData)
 
   if(isLoading){
     return(

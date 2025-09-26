@@ -10,7 +10,7 @@ type PropType = {
 
 const News: React.FC<PropType> = (props) => {
     const {language} = props
-    const {newsPromoData,isLoading} = useGetNewsPromosList(language)
+    const {newsPromoData,isLoading} = useGetNewsPromosList(language,4)
 
     if(isLoading){
         return(
@@ -36,10 +36,10 @@ const News: React.FC<PropType> = (props) => {
         </div>
 
         <div className="hidden md:flex justify-center">
-            <GridNews news={newsPromoData!}/>
+            <GridNews news={newsPromoData!.data}/>
         </div>
         <div className="md:hidden">
-            <CarouselNews news={newsPromoData!}/>
+            <CarouselNews news={newsPromoData!.data}/>
         </div>
         </div>
     </div>

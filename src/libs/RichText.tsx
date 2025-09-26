@@ -96,14 +96,16 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content }) => {
                 );
             case "image":
                 return (
-                    <Image
-                        key={index}
+                   <div className="flex justify-center"
+                        key={index}>
+                     <Image
                         src={node.image.url}
                         width={node.image.width}
                         height={node.image.height}
                         alt={node.image.alternativeText}
                         className="my-4"
                     />
+                   </div>
                 );
             case "code":
                 return (

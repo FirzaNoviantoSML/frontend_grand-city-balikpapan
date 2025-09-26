@@ -1,9 +1,9 @@
 import React from 'react'
-import ResidentialIndex from './component/CommercialIndex'
 import {getMetadata} from '@/api/metadata/getMetadata'
 import {MetadataData} from "@/types/MetadataType"
 import type {Metadata} from "next"
 import type {Viewport} from 'next'
+import NewsDetailIndex from './components/NewsDetailIndex'
 
 export const viewport: Viewport = {
   themeColor: '#ffffff'
@@ -13,10 +13,10 @@ export async function generateMetadata({
     params,
 
 }: {
-  params: Promise<{ cluster: string }>;
+  params: Promise<{ newsSlug: string }>;
 }): Promise<Metadata> {
-const { cluster } = await params;
-const data:MetadataData = await getMetadata("developments",cluster)
+const { newsSlug } = await params;
+const data:MetadataData = await getMetadata("content-news-promos",newsSlug)
 const keywordsValue:string = data?.keywords?.map((item) => item.label).join(", ") || "Grand City Balikpapan"
 
 const logoUrl = `/Logo_grandcitybalikpapan.png`;
@@ -84,15 +84,13 @@ const ogImage =   data.image?.url ? `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL} $
   };
 }
 
-
-
-const Clusterpage = async ({ params }: {params:Promise<{ cluster:string}>}) => {
-  const {cluster} = await params
+const page= async ({ params }: {params:Promise<{ newsSlug:string}>}) => {
+  const {newsSlug} = await params
   return (
-    <div>
-      <ResidentialIndex slug={cluster} />
+    <div className="mt-16">
+      <NewsDetailIndex slug={newsSlug}/>
     </div>
   )
 }
 
-export default Clusterpage
+export default page

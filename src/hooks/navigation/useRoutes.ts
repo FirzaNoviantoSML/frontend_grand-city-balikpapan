@@ -41,7 +41,7 @@ export const useRoutes = () => {
     {
       label: language === "en" ? "Developments" : "Development",
       href: "/developments",
-      active: pathname.startsWith("/developments"),
+      active: pathname.startsWith("/residential") || pathname.startsWith("/commercial"),
       onClick: () => handleToggleDropdown("developments"),
       icon: activeDropdown === "developments" ? RiArrowDropUpLine : RiArrowDropDownLine,
       isOpen: activeDropdown === "Developments",
@@ -53,8 +53,8 @@ export const useRoutes = () => {
     },
     {
       label: language === "en" ? "News" : "Berita",
-      href: "/news",
-      active: pathname.startsWith("/news"),
+      href: "/news-promo",
+      active: pathname.startsWith("/news-promo"),
     },
     {
       label: language === "en" ? "Contact Us" : "Kontak Kami",
@@ -65,12 +65,7 @@ export const useRoutes = () => {
       label: "E-Catalog",
       href: "https://ecatalog.sinarmasland.com",
       target: "_blank",
-    },
-    {
-      label: "Login",
-      href: "/Login",
-      active: pathname.startsWith("/login"),
-    },
+    }
   ], [language, pathname, activeDropdown, handleToggleDropdown]);
 
   return { routes, activeDropdown,handleToggleDropdown };
