@@ -3,6 +3,7 @@ import React from 'react'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import {NewsItem} from "@/types/news-promoListTypes"
 import Link from 'next/link';
+import {useLanguage} from "@/contex/LanguageContext"
 
 type PropType = {
     news: NewsItem[]
@@ -11,7 +12,7 @@ type PropType = {
 }
 
 const GridNews: React.FC<PropType> = (props) => {
-
+    const {language} = useLanguage()
     const { news,slug,isHideSemore } = props
     return (
     <div>
@@ -48,12 +49,12 @@ const GridNews: React.FC<PropType> = (props) => {
                         day: "numeric",
                     })}
                     </p>
-                    <p className="md:text-sm text-xl font-bold text-[#834520]">
+                    <p className="text-sm md:text-lg font-bold text-[#834520]">
                         {item.title}
                     </p>
-                    <p className=" font-bold flex justify-start items-center text-[#834520]">
-                            Read More
-                            <IoChevronForwardSharp className='font-bold' />
+                    <p className=" font-extralight flex justify-start items-center text-[#834520] text-sm">
+                            {language === "en"?"Read More":"Selengkapnya"}
+                            <IoChevronForwardSharp className='font-extralight mt-0.5' />
                     </p>
                 </Link>
             )

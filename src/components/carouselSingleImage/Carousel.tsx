@@ -8,6 +8,7 @@ import {useState,useEffect} from 'react'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import {Development} from "@/types/developmentListTypes"
 import {useIsMobile} from "@/libs/useIsMobile"
+import {useLanguage} from "@/contex/LanguageContext"
 
 
 type PropType = {
@@ -17,6 +18,7 @@ type PropType = {
 
 
 const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
+    const {language} = useLanguage()
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
     const isMobile = useIsMobile()
@@ -80,9 +82,9 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                                     {item.thumbnail_description}
                                 </div>
                                 </div>
-                                <div className="font-bold flex justify-start items-center text-amber-900">
-                                See Details
-                                <IoChevronForwardSharp className='font-bold' />
+                                <div className="font-extralight flex justify-start items-center text-amber-900">
+                                {language === "en"? "See Details":"Lihat Detail"}
+                                <IoChevronForwardSharp className='font-extralight mt-0.5' />
                                 </div>                         
                             </div>
                             <div className="block md:hidden relative w-full h-[40%]">

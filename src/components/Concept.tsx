@@ -39,10 +39,10 @@ const Concept: React.FC<PropType> = (props) => {
             />
             <div className="absolute md:top-1/6 md:left-12 left-1/12 top-1/8 inline-block ">
                 <p className="inline-block border-b-4 border-amber-600 font-bold text-xl md:text-2xl text-[#834520] py-2">
-                    Concept
+                    {language === "en"?"Concept":"Konsep"}
                 </p>
                 <p className="font-extralight text-xl md:text-3xl text-[#834520] py-2 ">
-                    Inspiration Behind the Grand Design
+                    {language === "en"?"Inspiration Behind the Grand Design":"Inspirasi Dibalik Desain Utama"}
                 </p>
             </div>
             </div>

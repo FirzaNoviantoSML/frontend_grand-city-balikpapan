@@ -31,10 +31,10 @@ const FacilitiesHome: React.FC<PropType> = (props) => {
             <div className="flex justify-center">
             <div className="text-center">
             <p className="text-[#834520] text-lg  md:text-2xl font-bold border-b-3 inline-block ">
-                Facilites
+                {language ==="en"?"Facilites":"Fasilitas"}
             </p>
             <p className="text-[#834520] text-lg  md:text-2xl font-light my-2">
-              Amenities and Convenience           
+              {language === "en"?"Amenities and Convenience":"Kemudahan dan Kenyamanan"  }         
             </p>
             </div>
         </div>

@@ -31,7 +31,7 @@ const GridFacilites: React.FC<PropType> = (props) => {
                         />
 
                         </div>
-                        <div className=' p-4'>
+                        <div className=' p-4 text-amber-800'>
                             {facility.title}
                         </div>
                     </div>

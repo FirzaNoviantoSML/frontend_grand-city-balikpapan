@@ -7,6 +7,7 @@ import Image from 'next/image'
 import {useState,useEffect} from 'react'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import {Development} from "@/types/developmentListTypes"
+import {useLanguage} from '@/contex/LanguageContext'
 
 
 type PropType = {
@@ -15,6 +16,7 @@ type PropType = {
 }
 
 const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
+    const {language} = useLanguage()
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
     const { slides } = props
@@ -71,9 +73,9 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                                 {item.thumbnail_description}
                             </div>
                             </div>
-                            <div className="font-bold flex justify-start items-center text-amber-900 ml-4">
-                                See Details
-                                <IoChevronForwardSharp className='font-bold' />
+                            <div className=" flex font-extralight justify-start items-center text-amber-900 ml-4">
+                                {language === "en" ? "See Details":"Lihat Detail"}
+                                <IoChevronForwardSharp className='font-extralight' />
                             </div>
                             </div>
                         </div>

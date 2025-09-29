@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
 import { IoChevronForwardSharp } from "react-icons/io5";
 import {NewsItem} from "@/types/news-promoListTypes"
+import {useLanguage} from "@/contex/LanguageContext"
 
 type PropType = {
     slides: NewsItem[]
@@ -12,7 +13,7 @@ type PropType = {
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-
+    const {language} = useLanguage()
     const { slides } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
 
@@ -45,7 +46,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                                         className="rounded-2xl shadow-md"
                                     />
                                 </div>
-                                <p className="font-light text-sm text-gray-500 my-4">
+                                <p className="font-light text-sm text-gray-500 mt-4">
                                 {new Date(item.date).toLocaleDateString("en-US", {
                                 year: "numeric",
                                 month: "long",
@@ -55,9 +56,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                                 <div className="text-md font-bold text-[#834520] w-[90%]">
                                     {item.title}
                                 </div>
-                                <p className="flex justify-start items-center text-[#834520] mt-6 text-xs">
-                                        Read More
-                                        <IoChevronForwardSharp className='font-bold' />
+                                <p className="flex justify-start items-center text-[#834520]  text-xs font-extralight">
+                                        {language === "en"?"Read More":"Selengkapnya"}
+                                        <IoChevronForwardSharp className='font-extralight mt-0.5' />
                                 </p>
                             </div>
                         </div>

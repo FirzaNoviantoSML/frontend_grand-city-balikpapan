@@ -8,6 +8,7 @@ export const useRoutes = () => {
   const { language } = useLanguage()
   const pathname = usePathname();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  console.log("active dropdown now",activeDropdown)
 
   const handleToggleDropdown = useCallback((key: string) => {
     setActiveDropdown((prev) => (prev === key ? null : key));
@@ -34,17 +35,17 @@ export const useRoutes = () => {
       label: language === "en" ? "Concept" : "Konsep",
       href: "/concept",
       active: pathname.startsWith("/concept"),
-      icon: activeDropdown === "concept" ? RiArrowDropUpLine : RiArrowDropDownLine,
+      icon: activeDropdown === "concept" || activeDropdown === "konsep" ? RiArrowDropUpLine : RiArrowDropDownLine,
       onClick: () => handleToggleDropdown("concept"),
-      isOpen: activeDropdown === "Concept",
+      isOpen: activeDropdown === "Concept" || activeDropdown === "Konsep",
     },
     {
       label: language === "en" ? "Developments" : "Development",
       href: "/developments",
       active: pathname.startsWith("/residential") || pathname.startsWith("/commercial"),
       onClick: () => handleToggleDropdown("developments"),
-      icon: activeDropdown === "developments" ? RiArrowDropUpLine : RiArrowDropDownLine,
-      isOpen: activeDropdown === "Developments",
+      icon: activeDropdown === "developments" || activeDropdown === "development" ? RiArrowDropUpLine : RiArrowDropDownLine,
+      isOpen: activeDropdown === "Developments" || activeDropdown === "Development",
     },
     {
       label: language === "en" ? "Facilities" : "Fasilitas",

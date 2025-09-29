@@ -2,7 +2,7 @@
 import {useState,useEffect} from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { usePathname } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
@@ -15,18 +15,19 @@ interface PaginationProps {
 
 
 const Pagination = ({ page, totalPage }: PaginationProps) => {
-  const pathname = usePathname();
-  const segments = pathname.split('/').filter(Boolean);
-  segments.pop(); // buang 'slug-lama'
-  const newPath = '/' + segments.join('/'); // "/news/slug-baru"
+  const searchParams = useSearchParams();
+    const initialSearch = searchParams.get("q") || "";
+    // const initialPage = searchParams.get("page")
+    //   ? parseInt(searchParams.get("page") as string)
+    //   : 1;
+
+  const newPath = '/' + "search?q="+initialSearch+"&page=";
    
   
   const toNewPage = (newPage:number) => {
+    const initialSearch = searchParams.get("q") || "";
 
-  const newSegments = pathname.split('/').filter(Boolean);
-  newSegments.pop(); // buang 'slug-lama'
-  newSegments.push(newPage.toString()); // ganti dengan slug baru
-  const Path = '/' + newSegments.join('/'); // "/news/slug-baru"
+  const Path = '/' + "search?q="+initialSearch+"&page="+newPage;
   
   redirect(Path)
    }
@@ -66,7 +67,7 @@ const Pagination = ({ page, totalPage }: PaginationProps) => {
         return(
           <Link
         key={number}
-        href={`${newPath}/${number}`}
+        href={`${newPath}${number}`}
         className="hidden lg:flex">
         <button
           className={`px-4 py-2 rounded-lg ${

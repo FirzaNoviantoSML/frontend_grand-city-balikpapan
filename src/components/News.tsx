@@ -28,8 +28,8 @@ const News: React.FC<PropType> = (props) => {
         <div>
             <div className="flex justify-center">
             <div className="text-center">
-            <p className="text-[#834520] text-2xl font-bold border-b-3 inline-block mb-2">
-                {language === "en" ? "News":"Berita"}
+            <p className="text-[#834520] md:text-2xl font-bold border-b-3 inline-block mb-8">
+                {language === "en" ? "News & Promo":"Berita & Promo"}
             </p>
             </div>
         </div>

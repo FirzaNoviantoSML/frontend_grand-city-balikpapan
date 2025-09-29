@@ -6,11 +6,11 @@ import clsx from "clsx";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useLanguage } from "@/contex/LanguageContext";
 import { MdClose } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import ButtonChangeLanguageMobile from "./ButtonChangeLanguageMobile";
 import {Concept} from "@/types/conceptListTypes"
+import { useSearch } from "@/hooks/search/useSearch";
 
 type DevelopmentType = {
     title:string,
@@ -36,13 +36,14 @@ const HeaderMobileView: React.FC<HeaderMobileProps> = ({
   development
 }) => {
   const { routes, activeDropdown } = useRoutes();
-  const refDropdown = useRef<HTMLDivElement>(null);
-  const { language } = useLanguage();
-   const [query, setQuery] = useState("");
+  console.log(activeDropdown)
+  // const refDropdown = useRef<HTMLDivElement>(null);
+  const { handleSearch, setQuery, query } = useSearch("");
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmitQueryInput = (e: React.FormEvent) => {
+    handleSearch(e);
     onClose()
+    setQuery("")
 
     // tambahkan logika search di sini
   };
@@ -95,7 +96,7 @@ const HeaderMobileView: React.FC<HeaderMobileProps> = ({
         onClick={route.onClick}
         className={clsx(
           "text-xl text-neutral-500 hover:text-white transition-all duration-200 block",
-          route.active ? "font-semibold text-amber-500" : "font-medium"
+          route.active ? "font-semibold text-amber-500" : "font-medium text-amber-900"
         )}
       >
         <div className="flex items-center justify-start gap-1">
@@ -118,7 +119,12 @@ const HeaderMobileView: React.FC<HeaderMobileProps> = ({
     )}
 
     {/* Dropdown Concept */}
-    {activeDropdown === "concept" && route.label.toLowerCase().includes("concept") && (
+    {activeDropdown === "concept" && 
+    (route.label.toLowerCase().includes("concept") ||
+    route.label.toLowerCase().includes("konsep")
+  )
+    && 
+    (
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -127,13 +133,13 @@ const HeaderMobileView: React.FC<HeaderMobileProps> = ({
         className="mt-2 flex flex-col gap-1 rounded-b-lg p-2 text-gray-400"
       >
         {concept.map((item, index) => (
-          <div key={index}>{item.title}</div>
+          <Link href={`/concept/${item.slug}`} onClick={() => onClose()} key={index}>{item.title}</Link>
         ))}
       </motion.div>
     )}
 
     {/* Dropdown Developments */}
-    {activeDropdown === "developments" && route.label.toLowerCase().includes("development") && (
+    {activeDropdown === "developments" && (route.label.toLowerCase().includes("developments") || route.label.toLowerCase().includes("development"))  && (
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -142,7 +148,7 @@ const HeaderMobileView: React.FC<HeaderMobileProps> = ({
         className="mt-2 flex flex-col gap-1 rounded-b-lg p-2 text-gray-400"
       >
         {development.map((item, index) => (
-          <div key={index}>{item.title}</div>
+          <Link href={`/${item.slug}`} key={index} onClick={() => onClose()}>{item.title}</Link>
         ))}
       </motion.div>
     )}
@@ -150,7 +156,7 @@ const HeaderMobileView: React.FC<HeaderMobileProps> = ({
 ))}
 
                 {/* Search form */}
-      <form onSubmit={handleSearch} className="relative w-full max-w-md text-neutral-500 ">
+      <form onSubmit={handleSubmitQueryInput} className="relative w-full max-w-md text-neutral-500 ">
           <input
             type="text"
             value={query}
