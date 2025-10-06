@@ -45,11 +45,14 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
     return (
         <section className="relative">
             <div ref={emblaRef} className="embla overflow-hidden ">
-                <div className="embla__container flex touch-pan-y gap-2 xl:gap-12  px-12 mb-6">
+                <div className="embla__container flex touch-pan-y gap-2 lg:gap-12  px-12 mb-6">
                     {slides.map((item, idx) => (
                         <div
                             key={idx}
-                            className="relative embla__slide flex-[0_0_calc(100%)] lg:flex-[0_0_calc(30%-1rem)] md:flex-[0_0_calc(43%-1rem)] h-[50vh] md:h-[50vh] lg:h-[60vh] rounded-xl shadow-md bg-white"
+                            className="relative embla__slide flex-[0_0_calc(100%)] lg:flex-[0_0_calc(30%-1rem)] md:flex-[0_0_calc(43%-1rem)] h-[50vh] md:h-[50vh] lg:h-[60vh] rounded-xl shadow-md bg-white
+                                                            group transition-transform duration-300 ease-out
+                                hover:scale-[1.03] focus-visible:scale-[1.03]
+                                transform-gpu cursor-pointer"
                         >
                             <div className="relative w-full h-[50%]">
                                 <Image
@@ -67,6 +70,7 @@ const EmblaCarouselMultiple: React.FC<PropType> = (props) => {
                                     src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item.logo.url}`}
                                     width={160}
                                     height={160}
+                                    className="h-14.5"
                                     />
                                 </div>
                             <div className="py-3 text-gray-900">

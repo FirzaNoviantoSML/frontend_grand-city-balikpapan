@@ -14,7 +14,7 @@ const {gallery,language,title} = props
     <div>
         <div className="flex justify-center">
             <div>
-                <p className="text-lg md:text-2xl font-bold text-amber-800 border-b-4 border-amber-500 pb-2 mb-2">
+                <p className="text-lg md:text-2xl font-bold text-amber-800 border-b-3 border-amber-500 pb-2 mb-2">
                 {language === "en"? `Gallery ${title}`:`Galeri ${title}`}        
                 </p>
             </div>

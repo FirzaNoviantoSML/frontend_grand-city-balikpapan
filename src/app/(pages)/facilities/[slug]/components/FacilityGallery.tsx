@@ -14,7 +14,7 @@ const {gallery,language,title} = props
     <div>
         <div className="flex justify-center">
             <div>
-                <p className="text-lg md:text-2xl font-bold text-amber-800 border-b-2 border-amber-500 pb-2 mb-2">
+                <p className="text-lg md:text-2xl font-bold text-amber-800 border-b-3 border-amber-500 pb-2 mb-2">
                 {language === "en"? "Facilities Gallery":"Galeri Fasilitas"}        
                 </p>
                 <p className='flex justify-center text-lg md:text-2xl text-amber-800'>
@@ -24,7 +24,7 @@ const {gallery,language,title} = props
         </div>
         {
             gallery && (
-                <div className="mt-4">
+                <div className="mt-8">
                     <Carousel slides={gallery}/>
                 </div>
             )

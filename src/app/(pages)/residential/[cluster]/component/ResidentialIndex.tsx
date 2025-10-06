@@ -49,7 +49,7 @@ const ResidentialIndex = ({ slug }: { slug: string }) => {
         {isMobile ? (
           <Image
             src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${clusterDetailData?.hero_banner?.url}`}
-            alt={clusterDetailData?.hero_banner?.name || "Facility Hero Banner"}
+            alt={clusterDetailData?.hero_banner?.name || "Residential Hero Banner"}
             width={515}
             height={345}
             className="object-cover w-full  h-[200px]  brightness-75"
@@ -57,20 +57,20 @@ const ResidentialIndex = ({ slug }: { slug: string }) => {
         ) : (
           <Image
             src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${clusterDetailData?.hero_banner?.url}`}
-            alt={clusterDetailData?.hero_banner?.name || "Facility Hero Banner"}
+            alt={clusterDetailData?.hero_banner?.name || "Residential Hero Banner"}
             width={1440}
             height={450}
             className="object-cover w-full  h-[450px] brightness-75"
           />
         )}
-        <div className="absolute bottom-16 md:inset-y-1/2  left-4 md:inset-x-1/12 text-white">
+       <div className="absolute bottom-16 md:inset-y-1/3  left-4 md:inset-x-1/12 text-white">
           <div className="flex justify-start items-center">
             <div className="flex items-center space-x-2 mb-4">
-              <Link href="/" className="text-sm md:text-xl">
+              <Link href="/" className="text-xs md:text-sm">
                 {language === "en" ? "Home" : "Beranda"}
               </Link>
-              <MdKeyboardDoubleArrowRight className="text-lg md:text-2xl" />
-              <Link href="/residential" className="text-sm md:text-xl">
+               <MdKeyboardDoubleArrowRight className="text-xs md:text-sm" />
+              <Link href="/residential" className="text-xs md:text-sm">
                 {language === "en" ? "Residential" : "Residential"}
               </Link>
             </div>
@@ -87,7 +87,7 @@ const ResidentialIndex = ({ slug }: { slug: string }) => {
           </div>
         </div>
         <div className="text-center text-lg md:text-2xl font-bold text-amber-800">
-          <p className="inline border-b-4 border-amber-500 pb-2 mb-2">
+          <p className="inline border-b-3 border-amber-500 pb-2 mb-2">
             Siteplan
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 my-12 md:gap-8">
@@ -139,7 +139,7 @@ const ResidentialIndex = ({ slug }: { slug: string }) => {
         {/* Konten di tengah */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 py-12">
           <div className="text-center text-lg md:text-2xl font-bold text-amber-800">
-            <p className="inline border-b-4 border-amber-500 pb-2 mb-2">
+            <p className="inline border-b-3 border-amber-500 pb-2 mb-2">
               Unit Type & Floor Plan
             </p>
           </div>
@@ -192,7 +192,7 @@ const ResidentialIndex = ({ slug }: { slug: string }) => {
       </div>
       <div>
         <div className="text-center mt-8">
-          <p className="inline border-b-4 border-amber-500 pb-2 mb-2 text-amber-800 text-lg md:text-2xl font-bold ">
+          <p className="inline border-b-3 border-amber-500 pb-2 mb-2 text-amber-800 text-lg md:text-2xl font-bold ">
             Unit Stock
           </p>
           <p className="mt-4">

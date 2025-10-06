@@ -27,11 +27,6 @@ export const useRoutes = () => {
 
   const routes = useMemo(() => [
     {
-      label: language === "en" ? "About Us" : "Tentang Kami",
-      href: "/about-us",
-      active: pathname.startsWith("/about-us"),
-    },
-    {
       label: language === "en" ? "Concept" : "Konsep",
       href: "/concept",
       active: pathname.startsWith("/concept"),
@@ -56,6 +51,11 @@ export const useRoutes = () => {
       label: language === "en" ? "News" : "Berita",
       href: "/news-promo",
       active: pathname.startsWith("/news-promo"),
+    },
+    {
+      label: language === "en" ? "About Us" : "Tentang Kami",
+      href: "/about-us",
+      active: pathname.startsWith("/about-us"),
     },
     {
       label: language === "en" ? "Contact Us" : "Kontak Kami",

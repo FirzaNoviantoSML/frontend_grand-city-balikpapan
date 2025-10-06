@@ -78,7 +78,9 @@ const ResidentialIndex = () => {
                 <Link
                 href={`residential/${item.slug}`}
                 key={idx}
-                className={`relative w-full h-[45vh] md:h-[40vh] lg:h-[60vh] rounded-md shadow-2xl bg-white ${centerSingleOnLg}`}
+                className={`relative w-full h-[45vh] md:h-[40vh] lg:h-[60vh] rounded-md shadow-2xl bg-white ${centerSingleOnLg} transition-transform duration-300 ease-out
+                                hover:scale-[1.03] focus-visible:scale-[1.03]
+                                transform-gpu`}
                 >
                 <div className="relative w-full h-[50%]">
                     <Image

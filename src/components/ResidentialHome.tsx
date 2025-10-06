@@ -36,7 +36,7 @@ const ResidentialHome: React.FC<PropType> = (props) => {
         <div>
             <div className="relative flex justify-center  w-[100%]">
             <div className="text-center">
-            <p className="text-[#834520] text-md md:text-2xl font-bold border-b-3 inline-block ">
+            <p className="text-[#834520] text-md md:text-2xl font-bold border-b-3 border-amber-600  inline-block ">
                 Residential
             </p>
             <p className="text-[#834520] text-md md:text-2xl mt-2 my-8 font-extralight ">

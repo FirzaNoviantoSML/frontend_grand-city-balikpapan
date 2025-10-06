@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Dropdown from './Dropdown'
 import {Footer} from "@/types/footerTypes"
+import { usePathname } from "next/navigation";
 
 type PropType = {
     footer: Footer
@@ -15,10 +16,18 @@ type PropType = {
 
 const LocationHome: React.FC<PropType> = (props) => {
     const { footer } = props
+          const url = usePathname();
+          const urlIndex = url.split("/");
+          console.log(urlIndex[0])
 
 
   return (
     <div>
+        {
+        urlIndex[1] !== "about-us" && 
+        urlIndex[1] !== "residential" && 
+        urlIndex[1] !== "commercial"
+        && 
         <div>
             <div className="flex justify-center relative">
                 <div className="w-full h-[18vh] md:h-[20vh] lg:h-[25vh]  ">
@@ -40,12 +49,17 @@ const LocationHome: React.FC<PropType> = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
+        </div>}
+            {
+                urlIndex[1] !== "about-us" && 
+                urlIndex[1] !== "residential" && 
+                urlIndex[1] !== "commercial"
+                && <div>
             <iframe 
             src={footer.link_map} className="w-full h-[600px]">                
             </iframe>
         </div>
+            }
         <div className="bg-red-600 flex justify-center flex-col md:flex-row md:gap-48 py-8 gap-6">
             <div className="flex justify-center flex-col">
                 <p className='text-white text-md text-center mb-2'>

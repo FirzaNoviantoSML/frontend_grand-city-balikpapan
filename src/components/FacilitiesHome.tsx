@@ -27,10 +27,10 @@ const FacilitiesHome: React.FC<PropType> = (props) => {
   return (
     <div>
          <div className="relative bg-amber-50 py-8">
-        <div>
+        <div className="mb-4">
             <div className="flex justify-center">
             <div className="text-center">
-            <p className="text-[#834520] text-lg  md:text-2xl font-bold border-b-3 inline-block ">
+            <p className="text-[#834520] text-lg  md:text-2xl font-bold border-b-3 border-amber-600 inline-block ">
                 {language ==="en"?"Facilites":"Fasilitas"}
             </p>
             <p className="text-[#834520] text-lg  md:text-2xl font-light my-2">

@@ -149,7 +149,7 @@ const DetailConceptIndex = ({slug}:{slug:string}) => {
             <div className="bg-white flex justify-center lg:p-12 p-4 lg:min-h-96">
             <div>
                                 <div className="flex justify-center mb-6 ">
-                    <p className="text-amber-800 border-b-2 border-amber-500 pb-2 mb-2 text-lg md:text-2xl font-bold">
+                    <p className="text-amber-800 border-b-3 border-amber-500 pb-2 mb-2 text-lg md:text-2xl font-bold">
                     {language === "en"? "Other Concept":"Konsep Lain"}
                     </p>
                 </div>
@@ -160,13 +160,17 @@ const DetailConceptIndex = ({slug}:{slug:string}) => {
                             return(
                                 <div
                                 key={index}
-                                className="rounded-2xl shadow-2xl w-32 h-32 lg:w-38 lg:h-38 lg:p-8 p-4 mx-auto my-auto">
+                                className="rounded-2xl shadow-2xl w-36 h-36 lg:w-42 lg:h-42 lg:p-8 p-4 mx-auto my-auto cursor-pointer 
+                                group transition-transform duration-300 ease-out
+                                hover:scale-[1.03] focus-visible:scale-[1.03]
+                                transform-gpu
+                                ">
                                      <Image
                                 src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${item?.icon?.url}`}
                                 alt={item?.icon?.name || "Concept Icon"}
                                 width={60}
                                 height={60}
-                                className="mx-auto block mb-4"/>
+                                className="mx-auto block mb-4 group-hover:scale-110 duration-300 transform-fill"/>
                                 <div style={{ color: item?.color }}
                                 className="flex justify-center font-bold">
                                     <p>

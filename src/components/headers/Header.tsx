@@ -32,6 +32,16 @@ const Header = () => {
   const [, setIsFocus] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+const handleMouseEnter = (label: string) => {
+  if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  handleToggleDropdown(label);
+};
+
+const handleMouseLeave = () => {
+  timeoutRef.current = setTimeout(() => handleToggleDropdown(""), 200);
+};
 
   const handleFocus = () => {
     setIsFocus(true);
@@ -132,6 +142,8 @@ const Header = () => {
                       ? "text-amber-800"
                       : "text-neutral-500 hover:text-amber-800"
                   )}
+                      onMouseEnter={() => handleMouseEnter(route.label)}
+                      onMouseLeave={handleMouseLeave}
                 >
                   <Link
                     target={route.target}
@@ -164,6 +176,8 @@ const Header = () => {
                   {/* Dropdown */}
                   {route.isOpen && (
                     <motion.div
+                    onMouseEnter={() => handleMouseEnter(route.label)}
+                      onMouseLeave={handleMouseLeave}
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}

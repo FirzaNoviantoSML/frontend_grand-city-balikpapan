@@ -30,18 +30,20 @@ const Concept: React.FC<PropType> = (props) => {
         {
             isShowTitle &&
         <div className="relative h-[15vh] md:h-[20vh] bg-[#C5C1A5]">
-            <div className="md:w-[600px] h-[20vh]">
-                <Image
+            <div className='absolute left-0' >
+            <Image
             src="/background/bgleaf.jpg"
             alt="bfleaf"
-            fill
-            className='object-cover object-top'
+            width={600}
+            height={600}
             />
+            </div>
+            <div className="md:w-[600px] h-[20vh]">
             <div className="absolute md:top-1/6 md:left-12 left-1/12 top-1/8 inline-block ">
-                <p className="inline-block border-b-4 border-amber-600 font-bold text-xl md:text-2xl text-[#834520] py-2">
+                <p className="inline-block border-b-3 border-amber-600 font-bold text-xl md:text-2xl text-[#834520] py-2">
                     {language === "en"?"Concept":"Konsep"}
                 </p>
-                <p className="font-extralight text-xl md:text-3xl text-[#834520] py-2 ">
+                <p className="font-extralight text-xl md:text-2xl text-[#834520] py-2 ">
                     {language === "en"?"Inspiration Behind the Grand Design":"Inspirasi Dibalik Desain Utama"}
                 </p>
             </div>
@@ -80,10 +82,10 @@ const Concept: React.FC<PropType> = (props) => {
 
                         </div>
                         <div
-                        className="cursor-pointer absolute left-4 bottom-2 font-bold flex justify-start items-center"
+                        className="cursor-pointer absolute left-8 bottom-2 font-extralight flex justify-start items-center text-sm"
                         style={{ color: item.color }}>
                             See Details
-                            <IoChevronForwardSharp className='font-bold' />
+                            <IoChevronForwardSharp className='font-bold text-sm mt-0.5' />
                         </div>
                         </Link>
                     )

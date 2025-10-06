@@ -36,7 +36,7 @@ if(isLoading){
             <div>
                 <div className="relative flex justify-center">
                 <div className="text-center mt-6">
-                <p className="text-[#834520] text-md md:text-2xl font-bold border-b-3 inline-block ">
+                <p className="text-[#834520] text-md md:text-2xl font-bold border-b-3 border-amber-600 inline-block ">
                     {language === "en"?"Commercial":"Komersial"}
                 </p>
                 <p className="text-[#834520] text-md md:text-2xl font-extralight mb-8 mt-2">

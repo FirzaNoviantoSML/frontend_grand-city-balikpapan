@@ -25,7 +25,7 @@ const Testimoni: React.FC<PropType> = (props) => {
     <div  className="flex justify-center w-full">
        <div className="lg:w-[70%]">
          <div className="text-center">
-                <p className="text-amber-800 text-md md:text-2xl font-bold inline-block border-b-4 border-orange-700 pb-1 md:mb-8 lg:mb-8 mt-12">
+                <p className="text-amber-800 text-md md:text-2xl font-bold inline-block border-b-3 border-amber-600 pb-1 md:mb-8 lg:mb-8 mt-12">
                 Testimonial
                 </p>
         </div>
